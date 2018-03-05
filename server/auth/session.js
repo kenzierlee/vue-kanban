@@ -1,8 +1,7 @@
-var expressSession = require('express-session')
-var mongoStore = require('connect-mongodb-session')(expressSession) // ties our sessions into our current mongo db (this is one option: could also set up session storage in a separate server -- redis, etc.)
-var connectionStr = `mongodb://test:test@ds133814.mlab.com:33814/vue-kanban`
+var expressSession = require('express-session');
+var mongoStore = require('connect-mongodb-session')(expressSession); // ties our sessions into our current mongo db (this is one option: could also set up session storage in a separate server -- redis, etc.)
 var store = new mongoStore({
-  uri: connectionStr,
+  uri: 'mongodb://test:test@ds133814.mlab.com:33814/vue-kanban',
   collection: 'Sessions'
 })
 store.on('error', function(err) {
@@ -13,8 +12,8 @@ var session = expressSession({
   cookie: {
     maxAge: 1000*60*60*24*7*52 // number of milliseconds in one year    
   },
-  store: store,
+  store,
   resave: true,
   saveUninitialized: true
 })
-module.exports = session
+module.exports = session;

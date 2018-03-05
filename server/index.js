@@ -1,14 +1,13 @@
 var express = require('express');
 var bp = require('body-parser');
 var cors = require('cors');
+var server = express();
+var session = require('./auth/session');
+var port = 3000;
 
 require('./db/mlab-config');
 
-var server = express();
-var port = 3000;
-
 var authRoutes = require('./auth/routes');
-var session = require('./auth/session');
 
 // var boardRoutes = require('./routes/boards');
 // var listRoutes = require('./routes/lists');
@@ -22,7 +21,7 @@ var corsOptions = {
         callback(null, originIsWhitelisted)
     },
     credentials: true
-}
+};
 
 server.use(cors(corsOptions));
 server.use(session);
@@ -49,10 +48,10 @@ server.use('*', (req, res, next)=>{
     next();
 });
 
-server.use('*', (err, req, res, next)=>{
-    res.status(400).send(err)
+server.use('*', (error, req, res, next)=>{
+    res.status(400).send(error);
 });
 
-server.listen(port, ()=>{
-    console.log('Server Is Running on port: ', port)
+server.listen(port, () =>{
+    console.log('Server Is Running on port: ', port);
 });
