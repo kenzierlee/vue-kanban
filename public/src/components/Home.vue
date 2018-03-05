@@ -11,14 +11,12 @@
       return {
 
       }
-<<<<<<< HEAD
 
     },
     methods: {
       updateUser() {
         this.$store.dispatch('updateUser', this.newUserData)
       },
-=======
     },
     methods: {
 
@@ -27,7 +25,6 @@
       user(){
         return this.$store.state.user
       }
->>>>>>> 6731f8add8d3d7f211fe0f880c9902eb433b0586
     }
   }
 </script>
