@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h1>THIS IS LOGIN</h1>
       <button type="button" class="btn location-bottom btn-lg btn-nav" data-toggle="modal" data-target="#signUp">
           <b>Sign Up</b>
         </button>
@@ -7,7 +8,6 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <img src="../assets/logo2.jpg" height="175">
           </div>
           <form @submit.prevent="createUser(createdUser)">
             <div class="modal-body">
@@ -60,5 +60,8 @@
 </script>
 
 
-<style>
+<style scoped>
+.login{
+  background-color: bisque
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-
+<h1>THIS IS HOME!!</h1>
   </div>
 </template>
 
@@ -11,10 +11,15 @@
       return {
 
       }
+
+    },
+    methods: {
+      updateUser() {
+        this.$store.dispatch('updateUser', this.newUserData)
+      },
     }
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
