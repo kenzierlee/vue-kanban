@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var ObjectId = Schema.Types.ObjectId;
+var ObjectId = mongoose.SchemaTypes.ObjectId;
 var Schema = mongoose.Schema;
 var schemaName = 'List';
 

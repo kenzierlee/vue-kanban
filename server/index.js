@@ -9,10 +9,10 @@ require('./db/mlab-config');
 
 var authRoutes = require('./auth/routes');
 
-// var boardRoutes = require('./routes/boards');
-// var listRoutes = require('./routes/lists');
-// var taskRoutes = require('./routes/tasks');
-// var commentRoutes = require('./routes/comments');
+var boardRoutes = require('./routes/boards');
+var listRoutes = require('./routes/lists');
+var taskRoutes = require('./routes/tasks');
+var commentRoutes = require('./routes/comments');
 
 var whitelist = ['http://localhost:8080']
 var corsOptions = {
@@ -28,10 +28,10 @@ server.use(session);
 server.use(bp.json());
 server.use(bp.urlencoded({ extended: true }));
 server.use(authRoutes);
-// server.use('/api', boardRoutes.router);
-// server.use('/api', listRoutes.router);
-// server.use('/api', taskRoutes.router);
-// server.use('/api', commentRoutes.router);
+server.use('/api', boardRoutes.router);
+server.use('/api', listRoutes.router);
+server.use('/api', taskRoutes.router);
+server.use('/api', commentRoutes.router);
 
 server.use('/api/*', (req, res, next) => { // gateway for all following routes
     if (req.method.toLowerCase() != 'get' && !req.session.uid) {

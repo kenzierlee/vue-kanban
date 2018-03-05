@@ -30,7 +30,7 @@ router.post('/auth/login', (req, res) => {
       user.password = null // probably Mongoose doesn't let you delete the password!!
       delete user.password // don't send the (hashed) password to the front-end
       req.session.uid = user._id // save the userId into the session
-      res.send(user)
+      res.send({Message: "Successfully Logged In", user})
     })
     .catch( err => {
       res.status(401).send({error: 'Invalid username and/or password'}) // do not send the 'err' object back -- giving too much info to potential hackers!
