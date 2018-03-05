@@ -5,8 +5,12 @@
 </template>
 
 <script>
+  import router from './router'
 export default {
-  name: 'App'
+  name: 'App',
+  mounted(){
+    this.$store.dispatch('authenticate')
+  }
 }
 </script>
 
