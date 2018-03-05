@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-<h1>THIS IS HOME!!</h1>
+    <h1>THIS IS HOME!!</h1>
+    <button @click='logout' class='btn btn-primary'>Logout</button>
   </div>
 </template>
 
@@ -17,12 +18,12 @@
       updateUser() {
         this.$store.dispatch('updateUser', this.newUserData)
       },
-    },
-    methods: {
-
+      logout(){
+        this.$store.dispatch('logout')
+      }
     },
     computed: {
-      user(){
+      user() {
         return this.$store.state.user
       }
     }

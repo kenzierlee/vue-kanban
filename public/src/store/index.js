@@ -31,36 +31,38 @@ export default new vuex.Store({
     },
     actions: {
         
-        
+
         //user/login actions
         createUser({ commit, dispatch }, payload) {
-            auth.post("register", payload)
-                .then(result => {
-                    console.log("created user")
-                })
+            auth.post("register", payload).then(res => {
+                commit('updateUser', res.data.user)
+                router.push({ name: 'Home' })
+            })
         },
         login({ commit, dispatch }, payload) {
             auth.post('login', payload).then(res => {
                 commit('updateUser', res.data.user)
-                router.push({ name: 'HelloWorld' })
+                router.push({ name: 'Home' })
             })
                 .catch(err => {
                     console.log('Invalid Username or Password')
                 })
 
         },
-        authenticate({ commit, dispatch }) {
-            auth.get('authenticate').then(res => {
+        authenticate({ commit, dispatch }, payload) {
+            auth.get('authenticate', payload).then(res => {
                 commit('updateUser', res.data)
             })
                 .catch(err => {
                     console.log(err);
+                    router.push({ name: 'Login'})
                 })
         },
-        logout({ commit, dispatch }, payload) {
+        logout({ commit, dispatch }) {
             auth.delete('logout')
                 .then(res => {
                     commit('updateUser', {})
+                    dispatch('authenticate', {})
                 })
         }
     }

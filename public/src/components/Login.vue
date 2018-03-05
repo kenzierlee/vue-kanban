@@ -12,7 +12,7 @@
             <div class="modal-body">
               <div>
                 <i class="fas mar-right fa-1x fa-user"></i>
-                <input type="text" name="username" v-model="createdUser.createdUser" placeholder=" Username" required>
+                <input type="text" name="username" v-model="createdUser.userName" placeholder=" Username" required>
               </div>
               <div>
                 <i class="far mar-right fa-1x fa-envelope"></i>
@@ -82,9 +82,11 @@
     methods: {
       login() {
         this.$store.dispatch('login', this.user)
+        $('#login').modal('hide')
       },
       createUser() {
         this.$store.dispatch('createUser', this.createdUser)
+        $('#signup').modal('hide')
       }
     }
   }
