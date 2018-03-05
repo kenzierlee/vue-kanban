@@ -58,11 +58,11 @@ export default new vuex.Store({
                     router.push({ name: 'Login'})
                 })
         },
-        logout({ commit, dispatch }) {
+        logout({ commit, dispatch }, payload) {
             auth.delete('logout')
                 .then(res => {
                     commit('updateUser', {})
-                    dispatch('authenticate', {})
+                    dispatch('authenticate', payload)
                 })
         }
     }
