@@ -2,18 +2,18 @@ var express = require('express');
 var bp = require('body-parser');
 var cors = require('cors');
 
-require('./server/db/mlab-config');
+require('./db/mlab-config');
 
 var server = express();
 var port = 3000;
 
-var authRoutes = require('./server/auth/routes');
-var session = require('./server/auth/session');
+var authRoutes = require('./auth/routes');
+var session = require('./auth/session');
 
-var boardRoutes = require('./server/routes/boards');
-var listRoutes = require('./server/routes/lists');
-var taskRoutes = require('./server/routes/tasks');
-var commentRoutes = require('./server/routes/comments');
+// var boardRoutes = require('./routes/boards');
+// var listRoutes = require('./routes/lists');
+// var taskRoutes = require('./routes/tasks');
+// var commentRoutes = require('./routes/comments');
 
 var whitelist = ['http://localhost:8080']
 var corsOptions = {
@@ -29,10 +29,10 @@ server.use(session);
 server.use(bp.json());
 server.use(bp.urlencoded({ extended: true }));
 server.use(authRoutes);
-server.use('/api', boardRoutes.router);
-server.use('/api', listRoutes.router);
-server.use('/api', taskRoutes.router);
-server.use('/api', commentRoutes.router);
+// server.use('/api', boardRoutes.router);
+// server.use('/api', listRoutes.router);
+// server.use('/api', taskRoutes.router);
+// server.use('/api', commentRoutes.router);
 
 server.use('/api/*', (req, res, next) => { // gateway for all following routes
     if (req.method.toLowerCase() != 'get' && !req.session.uid) {
