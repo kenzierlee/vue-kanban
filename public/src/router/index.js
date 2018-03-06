@@ -19,7 +19,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/Board',
+      path: '/Board/:boardId/lists',
       name: 'Board',
       component: Board
     }

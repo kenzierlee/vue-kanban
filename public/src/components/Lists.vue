@@ -1,6 +1,6 @@
 <template>
   <div class="lists">
-    <div class="col-3">
+    <div>
       <h3>{{list.title}}</h3>
       <p>
         <strong>{{list.description}}</strong>

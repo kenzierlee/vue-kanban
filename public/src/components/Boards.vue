@@ -1,7 +1,7 @@
 <template>
     <div class="boards">
         <navbar></navbar>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
                     <h3>{{board.title}}</h3>
@@ -26,8 +26,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-for="list in lists">
-                <lists :list='list'></lists>
+            <div class="row">
+                <div class="col-3"  v-for="list in lists">
+                    <lists :list='list'></lists>
+                </div>
             </div>
         </div>
     </div>
@@ -39,16 +41,16 @@
     export default {
         name: 'Boards',
         mounted(){
-            this.$store.dispatch('getLists', this.board._id)
+            this.$store.dispatch('getLists', this.$route.params.boardId)
         },
         data() {
             return {
-                list: {}
+                list: {boardId: this.$route.params.boardId}
             }
         },
         methods: {
             createList(list){
-                list.boardId = this.board._id
+                
                 this.$store.dispatch('createList', this.list)
             }
         },
@@ -60,7 +62,7 @@
                 return this.$store.state.activeBoard
             },
             lists(){
-                return this.$store.state.lists
+                return this.$store.state.boardLists
             }
         },
         components: {

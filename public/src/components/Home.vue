@@ -17,8 +17,11 @@
       </div>
     </div>
     <div v-for="board in boards">
+      <div>
+        {{board.title}}
+        <router-link :to="{name: 'Board', params: {boardId: board._id}}">Board</router-link>
+      </div>
       <!-- Boards Go Here -->
-      <boards :board='board'></boards>
     </div>
   </div>
 
@@ -30,6 +33,8 @@
   import Navbar from './Navbar.vue'
   export default {
     name: 'Home',
+    mounted() {
+    },
     data() {
       return {
         board: {}
@@ -37,13 +42,10 @@
 
     },
     methods: {
-      updateUser() {
-        this.$store.dispatch('updateUser', this.newUserData)
-      },
       logout() {
         this.$store.dispatch('logout')
       },
-      createBoard(){
+      createBoard() {
         this.$store.dispatch('createBoard', this.board)
       }
     },

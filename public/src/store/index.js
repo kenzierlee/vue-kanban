@@ -23,7 +23,7 @@ export default new vuex.Store({
         boards: [],
         activeBoard: {},
         lists: [],
-        boardList: [],
+        boardLists:[],
         tasks: {}
     },
     mutations: {
@@ -37,10 +37,13 @@ export default new vuex.Store({
             state.tasks.push(payload)
         },
         setBoardLists(state, payload){
-            state.boardList = payload
+            state.boardLists = payload
         },
-        setBoard(state, payload){
+        setBoards(state, payload){
             state.boards.push(payload)
+        },
+        displayBoards(state, payload){
+            state.boards = payload
         }
     },
     actions: {
@@ -48,10 +51,10 @@ export default new vuex.Store({
         createList({commit, dispatch}, payload){
             api.post('lists', payload).then(res =>{
                 commit('setLists', res.data)
+                dispatch('getLists', payload.boardId)
             })
         },
         getLists({commit, dispatch}, payload){
-            debugger
             api.get('boards/'+ payload + '/lists').then(res =>{
                 commit('setBoardLists', res.data)
             })
@@ -66,6 +69,13 @@ export default new vuex.Store({
         createBoard({commit, dispatch}, payload){
             api.post('boards', payload).then(res =>{
                 commit('setBoards', res.data)
+            })
+        },
+        //get user boards
+        getBoards({commit, dispatch}, payload){
+            api.get(payload._id + '/boards')
+            .then(res =>{
+                commit('displayBoards', res.data)
             })
         },
         //user/login actions
@@ -88,6 +98,7 @@ export default new vuex.Store({
         authenticate({ commit, dispatch }, payload) {
             auth.get('authenticate', payload).then(res => {
                 commit('updateUser', res.data)
+                dispatch('getBoards', res.data)
             })
                 .catch(err => {
                     console.log(err);
