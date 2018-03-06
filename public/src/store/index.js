@@ -67,11 +67,14 @@ export default new vuex.Store({
         //task actions
         createTask({commit, dispatch}, payload){
             api.post('tasks', payload).then(res =>{
-                commit('setLists', {id: payload.listId, data: res.data})
+                dispatch('getTasks', payload.listId)
             })
         },
         getTasks({commit, dispatch}, payload){
-
+            debugger
+            api.get('lists/'+payload+'/tasks').then(res =>{
+                commit('setTasks', {id: payload, task: res.data})
+            })
         },
         //board actions
         createBoard({commit, dispatch}, payload){
