@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="row" v-for="list in lists">
-                <lists></lists>
+                <lists :list='list'></lists>
             </div>
         </div>
     </div>
@@ -38,13 +38,16 @@
     import Navbar from './Navbar.vue'
     export default {
         name: 'Boards',
+        mounted(){
+            this.$store.dispatch('getLists', this.board._id)
+        },
         data() {
             return {
                 list: {}
             }
         },
         methods: {
-            createList(){
+            createList(list){
                 list.boardId = this.board._id
                 this.$store.dispatch('createList', this.list)
             }
@@ -55,6 +58,9 @@
             },
             board() {
                 return this.$store.state.activeBoard
+            },
+            lists(){
+                return this.$store.state.lists
             }
         },
         components: {
