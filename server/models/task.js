@@ -5,7 +5,7 @@ var schemaName = 'Task';
 
 var schema = new Schema({
     title: {type: String, required: true},
-    description: {type: String},
+    description: {type: String, required: true},
     userId: {type: ObjectId, ref: 'User'},
     boardId: {type: ObjectId, ref: 'Board'},
     membersId: [{type: ObjectId, ref: 'User'}],
