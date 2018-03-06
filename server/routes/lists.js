@@ -52,7 +52,7 @@ router.get('/:id/lists', (req, res, next) => {
 
 //Get lists by Board
 router.get('/boards/:boardId/lists', (req, res, next) => {
-  Lists.find({ boardId: req.params.id })
+  Lists.find({ boardId: req.params.boardId })
     .then(Lists => {
       return res.send(Lists)
     })
