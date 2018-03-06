@@ -21,16 +21,25 @@ export default new vuex.Store({
     state: {
         user: {},
         boards: [],
+        activeBoard: {},
         lists: [],
         tasks: {}
     },
     mutations: {
         updateUser(state, payload) {
             state.user = payload
+        },
+        setLists(state, payload){
+            state.lists.push(payload)
         }
     },
     actions: {
-        
+        //list actions
+        createList({commit, dispatch}, payload){
+            api.post('lists', payload).then(res =>{
+                commit('setLists', res)
+            })
+        },
 
         //user/login actions
         createUser({ commit, dispatch }, payload) {
@@ -58,11 +67,11 @@ export default new vuex.Store({
                     router.push({ name: 'Login'})
                 })
         },
-        logout({ commit, dispatch }) {
+        logout({ commit, dispatch }, payload) {
             auth.delete('logout')
                 .then(res => {
                     commit('updateUser', {})
-                    dispatch('authenticate', {})
+                    dispatch('authenticate', payload)
                 })
         }
     }

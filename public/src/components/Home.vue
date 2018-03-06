@@ -1,11 +1,16 @@
 <template>
   <div class="home">
-    <h1>THIS IS HOME!!</h1>
-    <button @click='logout' class='btn btn-primary'>Logout</button>
+    <navbar></navbar>
   </div>
+
+  <!-- Boards Go Here -->
+
 </template>
 
 <script>
+  import Router from '../router'
+  import Boards from './Boards.vue'
+  import Navbar from './Navbar.vue'
   export default {
     name: 'Home',
     data() {
@@ -26,6 +31,10 @@
       user() {
         return this.$store.state.user
       }
+    },
+    components: {
+      Boards,
+      Navbar
     }
   }
 </script>
