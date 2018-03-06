@@ -34,7 +34,7 @@ export default new vuex.Store({
             state.lists.push(payload)
         },
         setTasks(state, payload){
-            state.tasks.push(payload)
+            vue.set(state.tasks, payload.id, payload.data)
         },
         setBoardLists(state, payload){
             state.boardLists = payload
@@ -67,8 +67,11 @@ export default new vuex.Store({
         //task actions
         createTask({commit, dispatch}, payload){
             api.post('tasks', payload).then(res =>{
-                commit('setTasks', res.data)
+                commit('setLists', {id: payload.listId, data: res.data})
             })
+        },
+        getTasks({commit, dispatch}, payload){
+
         },
         //board actions
         createBoard({commit, dispatch}, payload){

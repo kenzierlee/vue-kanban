@@ -9,11 +9,11 @@ var Tasks = require('../models/task')
 router.post('/tasks', (req, res, next) => {
   req.body.userId = req.session.uid
   Tasks.create(req.body)
-    .then(Tasks => {
-      if (!Tasks) {
+    .then(tasks => {
+      if (!tasks) {
         return res.status(400).send({ error: "Invalid Id" })
       }
-      return res.send(Tasks)
+      return res.send(tasks)
     })
     .catch(next)
 })
@@ -51,9 +51,16 @@ router.get('/:id/tasks', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/boards/:boardId/tasks', (req,res,next)=>{
+  Tasks.find({boardId: req.params.boardId}).then(tasks =>{
+    return res.send(tasks)
+  })
+  .catch(next)
+})
+
 //Get tasks by lists
 router.get('/lists/:listId/tasks', (req, res, next) => {
-  Tasks.find({ listId: req.params.id })
+  Tasks.find({ listId: req.params.listId })
     .then(Tasks => {
       return res.send(Tasks)
     })

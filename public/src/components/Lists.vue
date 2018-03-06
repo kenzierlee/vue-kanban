@@ -6,7 +6,7 @@
         <strong>{{list.description}}</strong>
       </p>
       <div v-for="task in tasks">
-        <Tasks></Tasks>
+        <tasks></tasks>
       </div>
       <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
