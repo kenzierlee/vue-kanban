@@ -59,6 +59,11 @@ export default new vuex.Store({
                 commit('setBoardLists', res.data)
             })
         },
+        deleteList({commit, dispatch}, payload){
+            api.delete('lists/' + payload._id).then(res =>{
+                dispatch('getLists', payload.boardId)
+            })
+        },
         //task actions
         createTask({commit, dispatch}, payload){
             api.post('tasks', payload).then(res =>{
@@ -71,9 +76,14 @@ export default new vuex.Store({
                 commit('setBoards', res.data)
             })
         },
+        deleteBoard({commit, dispatch}, payload){
+            api.delete(payload.userId + '/boards/' + payload._id).then(res =>{
+                dispatch('getBoards', payload.userId)
+            })
+        },
         //get user boards
         getBoards({commit, dispatch}, payload){
-            api.get(payload._id + '/boards')
+            api.get(payload + '/boards')
             .then(res =>{
                 commit('displayBoards', res.data)
             })
@@ -98,7 +108,7 @@ export default new vuex.Store({
         authenticate({ commit, dispatch }, payload) {
             auth.get('authenticate', payload).then(res => {
                 commit('updateUser', res.data)
-                dispatch('getBoards', res.data)
+                dispatch('getBoards', res.data._id)
             })
                 .catch(err => {
                     console.log(err);

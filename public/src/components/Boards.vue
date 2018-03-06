@@ -49,8 +49,7 @@
             }
         },
         methods: {
-            createList(list){
-                
+            createList(list){  
                 this.$store.dispatch('createList', this.list)
             }
         },

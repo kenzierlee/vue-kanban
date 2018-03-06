@@ -31,7 +31,6 @@ router.put('/lists/:listId', (req, res, next) => {
 
 //Delete a List
 router.delete('/lists/:listId', (req, res, next) => {
-  req.body.userId = req.session.uid
   Lists.findByIdAndRemove(req.params.listId)
     .then(Lists => {
       return res.send({

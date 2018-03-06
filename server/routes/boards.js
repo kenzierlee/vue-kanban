@@ -31,7 +31,6 @@ router.put('/:userId/boards/:boardId', (req, res, next) => {
 
 //Delete a board
 router.delete('/:userId/boards/:boardId', (req, res, next) => {
-  req.body.userId = req.session.uid
   Board.findByIdAndRemove({userId: req.params.userId, _id: req.params.boardId})
     .then(board => {
       return res.send({

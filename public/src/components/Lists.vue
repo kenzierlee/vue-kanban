@@ -1,7 +1,7 @@
 <template>
   <div class="lists">
     <div>
-      <h3>{{list.title}}</h3>
+      <h3>{{list.title}}</h3><i class="fas fa-times-circle" @click="deleteList(list)"></i>
       <p>
         <strong>{{list.description}}</strong>
       </p>
@@ -50,6 +50,9 @@
             task.boardId = activeBoard._id;
             task.listId = this.list._id;
             this.$store.dispatch('createTask', this.task)
+        },
+        deleteList(list){
+            this.$store.dispatch('deleteList', list)
         }
 
     },

@@ -19,6 +19,7 @@
     <div v-for="board in boards">
       <div>
         {{board.title}}
+        <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
         <router-link :to="{name: 'Board', params: {boardId: board._id}}">Board</router-link>
       </div>
       <!-- Boards Go Here -->
@@ -47,6 +48,9 @@
       },
       createBoard() {
         this.$store.dispatch('createBoard', this.board)
+      },
+      deleteBoard(board) {
+        this.$store.dispatch('deleteBoard', board)
       }
     },
     computed: {
