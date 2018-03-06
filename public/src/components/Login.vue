@@ -2,7 +2,9 @@
   <div class="login container-fluid">
     <div>
       <h1>Welcome to KanBan!</h1>
-      <p><strong>Please sign up or login to continue.</strong></p>
+      <p>
+        <strong>Please sign up or login to continue.</strong>
+      </p>
       <button type="button" class="btn btn-lg btn-success m-2" data-toggle="modal" data-target="#signUp">
         <b>Sign Up</b>
       </button>
@@ -11,22 +13,24 @@
       </button>
     </div>
     <div>
-      <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- Sign Up Modal Start -->
+      <div class="modal fade" id="signUp" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
             </div>
             <form @submit.prevent="createUser(createdUser)">
               <div class="modal-body">
-                <div>
+                <!-- username input -->
+                <div class="m-2">
                   <i class="fas mar-right fa-1x fa-user"></i>
                   <input type="text" name="username" v-model="createdUser.userName" placeholder=" Username" required>
                 </div>
-                <div>
+                <div class="m-2">
                   <i class="far mar-right fa-1x fa-envelope"></i>
                   <input type="email" name="userEmail" v-model="createdUser.email" placeholder="Email" required>
                 </div>
-                <div>
+                <div class="m-2">
                   <i class="far mar-right fa-1x fa-edit"></i>
                   <input type="password" name="password" v-model="createdUser.password" placeholder=" Password">
                 </div>
@@ -43,18 +47,19 @@
           </div>
         </div>
       </div>
-      <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- Login Modal Start -->
+      <div class="modal fade" id="login" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
             </div>
             <form @submit.prevent="login(user)">
               <div class="modal-body">
-                <div>
+                <div class="m-2">
                   <i class="far mar-right fa-1x fa-envelope"></i>
                   <input type="text" name="userEmail" v-model="user.email" placeholder=" Email" required>
                 </div>
-                <div>
+                <div class="m-2">
                   <i class="far mar-right fa-1x fa-edit"></i>
                   <input type="password" name="password" v-model="user.password" placeholder=" Password">
                 </div>
