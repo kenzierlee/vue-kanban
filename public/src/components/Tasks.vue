@@ -2,7 +2,7 @@
   <div class="tasks">
     <div class="card">
       <div class="card-header">
-        <h5>{{task.title}}</h5>
+        <h5>{{task.title}}<i class="fas fa-times-circle" @click="deleteTask(task)"></i></h5>
       </div>
       <div class="card-body">
         <p>{{task.description}}</p>
@@ -28,7 +28,9 @@
 
     },
     methods: {
-
+      deleteTask(task){
+        this.$store.dispatch('deleteTask', task)
+      }
     },
     computed: {
       user() {

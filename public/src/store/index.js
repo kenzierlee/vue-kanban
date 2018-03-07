@@ -71,9 +71,13 @@ export default new vuex.Store({
             })
         },
         getTasks({commit, dispatch}, payload){
-            debugger
             api.get('lists/'+payload+'/tasks').then(res =>{
                 commit('setTasks', {id: payload, task: res.data})
+            })
+        },
+        deleteTask({commit, dispatch}, payload){
+            api.delete('tasks/'+ payload._id).then(res =>{
+                dispatch('getTasks', payload.listId)
             })
         },
         //board actions
