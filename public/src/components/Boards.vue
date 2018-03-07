@@ -3,8 +3,8 @@
         <navbar></navbar>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
-                    <h3>{{board.title}}</h3>
+                <div class="col-12 d-flex justify-content-end">
+                    <!-- <h3>{{board.title}}</h3> -->
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
