@@ -38,6 +38,7 @@ export default new vuex.Store({
             vue.set(state.tasks, payload.id, payload.task)
         },
         setBoardLists(state, payload){
+            console.log(payload)
             state.boardLists = payload
         },
         setBoards(state, payload){
@@ -80,6 +81,7 @@ export default new vuex.Store({
             })
         },
         getLists({commit, dispatch}, payload){
+            console.log(payload)
             api.get('boards/'+ payload + '/lists').then(res =>{
                 commit('setBoardLists', res.data)
             })
@@ -113,6 +115,13 @@ export default new vuex.Store({
         deleteTask({commit, dispatch}, payload){
             api.delete('tasks/'+ payload._id).then(res =>{
                 dispatch('getTasks', payload.listId)
+            })
+        },
+        changeList({commit, dispatch}, payload){
+            api.put('/tasks/'+ payload.task, {listId: payload.list._id}).then(res =>{
+                console.log(res)
+                dispatch('getTasks', payload.list._id)
+                dispatch('getLists', payload.list.boardId)
             })
         },
         //board actions
