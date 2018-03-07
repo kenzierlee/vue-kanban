@@ -1,6 +1,6 @@
 <template>
     <div class="navbar">
-        <nav class="navbar navbar-light bg-light">
+        <nav>
             <span class="navbar-brand mb-0 h1">KanBan</span>
             <button @click='logout' class='btn btn-primary'>Logout</button>
         </nav>
@@ -22,4 +22,9 @@
     }
 </script>
 <style scoped>
+    .navbar{
+        background-color: steelblue;
+        display: flex;
+        align-content: center;
+        border-bottom: 3px solid slategray;    }
 </style>

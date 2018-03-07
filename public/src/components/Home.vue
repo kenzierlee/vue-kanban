@@ -1,28 +1,42 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Add A Board
-      </button>
-      <div class="dropdown-menu">
-        <form class="px-4 py-3" @submit.prevent="createBoard">
-          <div class="form-group">
-            <label for="board-title">Title</label>
-            <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Add A Board
+            </button>
+            <div class="dropdown-menu">
+              <form class="px-4 py-3" @submit.prevent="createBoard">
+                <div class="form-group">
+                  <label for="board-title">Title</label>
+                  <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Board</button>
+              </form>
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary">Add Board</button>
-        </form>
+        </div>
       </div>
-    </div>
-    <div v-for="board in boards">
-      <div>
-        {{board.title}}
-        <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
-        <router-link :to="{name: 'Board', params: {boardId: board._id}}">Board</router-link>
+      <div class="card boardCard">
+        <div class="card-header">
+          <h5>My Boards</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" v-for="board in boards">
+              <strong>{{board.title}}</strong>
+              <p>Created: {{board.created}}</p>
+              <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
+              <router-link :to="{name: 'Board', params: {boardId: board._id}}">Board</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- Boards Go Here -->
+
     </div>
   </div>
 
@@ -69,4 +83,14 @@
 </script>
 
 <style scoped>
+  .home{
+    background-color: whitesmoke;
+    height: 100vh;
+  }
+  .boardCard{
+    margin: 2rem;
+    width: 25rem;
+    border: 2px solid black;
+    border-radius: 4px;
+  }
 </style>
