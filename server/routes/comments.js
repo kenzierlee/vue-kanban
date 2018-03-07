@@ -10,11 +10,11 @@ var Comments = require('../models/comment')
 router.post('/comments', (req, res, next) => {
   req.body.userId = req.session.uid
   Comments.create(req.body)
-    .then(Comments => {
-      if (!Comments) {
+    .then(comments => {
+      if (!comments) {
         return res.status(400).send({ error: "Invalid Id" })
       }
-      return res.send(Comments)
+      return res.send(comments)
     })
     .catch(next)
 })
@@ -22,10 +22,10 @@ router.post('/comments', (req, res, next) => {
 //Edit a Comment
 router.put('/comments/:commentId', (req, res, next) => {
   Comments.findByIdAndUpdate(req.params.commentId, req.body, { new: true })
-    .then(Comments => {
+    .then(comments => {
       return res.send({
         message: 'Sucessfully updated the Comments',
-        data: Comments
+        data: comments
       })
     })
     .catch(next)
@@ -35,7 +35,7 @@ router.put('/comments/:commentId', (req, res, next) => {
 router.delete('/comments/:commentId', (req, res, next) => {
   req.body.userId = req.session.uid
   Comments.findByIdAndRemove(req.params.commentId)
-    .then(Comments => {
+    .then(comments => {
       return res.send({
         message: 'Sucessfully deleted a Comments'
       })
@@ -46,21 +46,19 @@ router.delete('/comments/:commentId', (req, res, next) => {
 //Get Users comments
 router.get('/:id/comments', (req, res, next) => {
   Comments.find({ userId: req.params.id })
-    .then(Comments => {
-      return res.send(Comments)
+    .then(comments => {
+      return res.send(comments)
     })
     .catch(next)
 })
 
 //Get comments by tasks
 router.get('/tasks/:taskId/comments', (req, res, next) => {
-  Comments.find({ listId: req.params.id })
-    .then(Comments => {
-      return res.send(Comments)
+  Comments.find({ taskId: req.params.taskId })
+    .then(comments => {
+      return res.send(comments)
     })
     .catch(next)
 })
-
-
 
 module.exports = { router };
