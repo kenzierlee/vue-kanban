@@ -71,7 +71,6 @@ export default new vuex.Store({
             })
         },
         getTasks({commit, dispatch}, payload){
-            debugger
             api.get('lists/'+payload+'/tasks').then(res =>{
                 commit('setTasks', {id: payload, task: res.data})
             })
