@@ -14,7 +14,7 @@
         </div> -->
         <div :key="comment._id" v-for="comment in comments">
             <Comments :comment="comment"></Comments>
-          </div>
+        </div>
         <div class="comments">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -43,6 +43,7 @@
     name: 'Tasks',
     props: ['task'],
     mounted() {
+      this.$store.dispatch('getComments', this.task._id)
     },
     data() {
       return {
@@ -54,11 +55,11 @@
       }
     },
     methods: {
+      createComment(comment) {
+        this.$store.dispatch('createComment', this.comment)
+      },
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
-      },
-      createComment() {
-        this.$store.dispatch('createComment', this.comment)
       }
     },
     computed: {

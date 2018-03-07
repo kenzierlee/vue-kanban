@@ -54,13 +54,11 @@ router.get('/:id/comments', (req, res, next) => {
 
 //Get comments by tasks
 router.get('/tasks/:taskId/comments', (req, res, next) => {
-  Comments.find({ listId: req.params.id })
+  Comments.find({ taskId: req.params.taskId })
     .then(comments => {
       return res.send(comments)
     })
     .catch(next)
 })
-
-
 
 module.exports = { router };
