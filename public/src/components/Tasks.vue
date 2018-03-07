@@ -4,6 +4,22 @@
       <div class="card-header">
         <h5>{{task.title}}
           <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
+          <div class="dropdown">
+              <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
+              <div class="dropdown-menu">
+                <form class="px-4 py-3" @submit.prevent="editTask(task)">
+                  <div class="form-group">
+                    <label for="task-title">Title</label>
+                    <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
+                  </div>
+                  <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Edit Task</button>
+                </form>
+              </div>
+            </div>
         </h5>
       </div>
       <div class="card-body">
@@ -57,6 +73,9 @@
     methods: {
       createComment(comment) {
         this.$store.dispatch('createComment', this.comment)
+      },
+      editTask(task){
+        this.$store.dispatch('editTask', task)
       },
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
