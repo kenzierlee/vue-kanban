@@ -43,14 +43,14 @@ router.delete('/comments/:commentId', (req, res, next) => {
     .catch(next)
 })
 
-//Get Users comments
-router.get('/:id/comments', (req, res, next) => {
-  Comments.find({ userId: req.params.id })
-    .then(comments => {
-      return res.send(comments)
-    })
-    .catch(next)
-})
+// //Get Users comments
+// router.get('/:id/comments', (req, res, next) => {
+//   Comments.find({ userId: req.params.id })
+//     .then(comments => {
+//       return res.send(comments)
+//     })
+//     .catch(next)
+// })
 
 //Get comments by tasks
 router.get('/tasks/:taskId/comments', (req, res, next) => {

@@ -82,11 +82,11 @@
       },
       showDropdown(id) {
         console.log(id)
-        document.getElementById(id).classList.remove("hideCreateList")
+        document.getElementById(id).classList.remove("hideDropdown")
         // document.getElementById(id).reset()
       },
       hideDropdown(id) {
-        document.getElementById(id).classList.add("hideCreateList")
+        document.getElementById(id).classList.add("hideDropdown")
       },
     },
     computed: {
@@ -107,7 +107,10 @@
 <style scoped>
   .home {
     background-color: whitesmoke;
-    height: 100vh;
+    height: 100%;
+  }
+  .hideDropdown{
+    display: none
   }
 
   .boardCard {
