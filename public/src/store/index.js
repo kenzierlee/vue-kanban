@@ -62,6 +62,11 @@ export default new vuex.Store({
                 commit('setComments', {id: payload, comment: res.data})
             })
         },
+        deleteComment({commit, dispatch}, payload){
+            api.delete('comments/'+ payload._id).then(res =>{
+                dispatch('getComments', payload.taskId)
+            })
+        },
         //list actions
         createList({commit, dispatch}, payload){
             api.post('lists', payload).then(res =>{
