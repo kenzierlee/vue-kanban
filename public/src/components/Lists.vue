@@ -7,7 +7,7 @@
         <strong>{{list.description}}</strong>
       </p>
       <div :key="task._id" v-for="task in tasks">
-        {{task.title}}
+        <Tasks :task="task"></Tasks>
       </div>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -33,13 +33,13 @@
 </template>
 
 <script>
-  import Task from './Tasks'
+  import Tasks from './Tasks'
   export default {
     name: 'Lists',
     props: ['list'],
-    // mounted() {
-    //   this.$store.dispatch('getTasks')
-    // },
+    mounted() {
+      this.$store.dispatch('getTasks', this.list._id)
+    },
     data() {
       return {
         task: {
@@ -67,6 +67,9 @@
       board() {
         return this.$store.state.activeBoard
       }
+    },
+    components: {
+      Tasks
     }
   }
 </script>

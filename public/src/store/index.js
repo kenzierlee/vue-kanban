@@ -34,7 +34,7 @@ export default new vuex.Store({
             state.lists.push(payload)
         },
         setTasks(state, payload){
-            vue.set(state.tasks, payload.id, payload.data)
+            vue.set(state.tasks, payload.id, payload.task)
         },
         setBoardLists(state, payload){
             state.boardLists = payload

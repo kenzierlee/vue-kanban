@@ -21,10 +21,10 @@ router.post('/tasks', (req, res, next) => {
 //Edit a Task
 router.put('/tasks/:taskId', (req, res, next) => {
   Tasks.findByIdAndUpdate(req.params.taskId, req.body, { new: true })
-    .then(Tasks => {
+    .then(tasks => {
       return res.send({
         message: 'Sucessfully updated the Tasks',
-        data: Tasks
+        data: tasks
       })
     })
     .catch(next)
@@ -34,7 +34,7 @@ router.put('/tasks/:taskId', (req, res, next) => {
 router.delete('/tasks/:taskId', (req, res, next) => {
   req.body.userId = req.session.uid
   Tasks.findByIdAndRemove(req.params.taskId)
-    .then(Tasks => {
+    .then(tasks => {
       return res.send({
         message: 'Sucessfully deleted a Tasks'
       })
@@ -45,8 +45,8 @@ router.delete('/tasks/:taskId', (req, res, next) => {
 //Get Users tasks
 router.get('/:id/tasks', (req, res, next) => {
   Tasks.find({ userId: req.params.id })
-    .then(Tasks => {
-      return res.send(Tasks)
+    .then(tasks => {
+      return res.send(tasks)
     })
     .catch(next)
 })
@@ -61,8 +61,8 @@ router.get('/boards/:boardId/tasks', (req,res,next)=>{
 //Get tasks by lists
 router.get('/lists/:listId/tasks', (req, res, next) => {
   Tasks.find({ listId: req.params.listId })
-    .then(Tasks => {
-      return res.send(Tasks)
+    .then(tasks => {
+      return res.send(tasks)
     })
     .catch(next)
 })

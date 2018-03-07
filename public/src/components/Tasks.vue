@@ -6,20 +6,19 @@
       </div>
       <div class="card-body">
         <p>{{task.description}}</p>
-        <div v-for="comment in comments">
-          <p>{{user.name}}</p>
+        <!-- <div v-for="comment in comments">
+          <p>{{user.userName}}</p>
           <p>{{comment.comment}}</p>
-          <!-- add comment form -->
-        </div>
+        </div> -->
       </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'Tasks',
+    props: ['task'],
     mounted() {
     },
     data() {
@@ -34,9 +33,6 @@
     computed: {
       user() {
         return this.$store.state.user
-      },
-      tasks() {
-        return this.$store.state.tasks
       }
     }
   }
