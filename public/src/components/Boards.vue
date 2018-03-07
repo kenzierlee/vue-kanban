@@ -6,12 +6,11 @@
                 <div class="col-sm-12">
                     <h3>{{board.title}}</h3>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown">
                             Add A List
                         </button>
-                        <div class="dropdown-menu">
-                            <form class="px-4 py-3" @submit.prevent="createList">
+                        <div class="dropdown-menu" id="createListDropdown">
+                            <form class="px-4 py-3" @submit.prevent="createList" id="createListForm">
                                 <div class="form-group">
                                     <label for="list-title">Title</label>
                                     <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
@@ -20,7 +19,7 @@
                                     <label for="list-description">Description</label>
                                     <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Add List</button>
+                                <button type="submit" class="btn btn-primary" @click="hideDropdown">Add List</button>
                             </form>
                         </div>
                     </div>
@@ -51,7 +50,16 @@
         methods: {
             createList(list){  
                 this.$store.dispatch('createList', this.list)
-            }
+            },
+            showDropdown(){
+                var element = document.getElementById("createListDropdown")
+                element.classList.remove("hideCreateList")
+                document.getElementById("createListForm").reset()
+            },
+            hideDropdown(){
+                var element = document.getElementById("createListDropdown")
+                element.classList.add("hideCreateList")
+            },
         },
         computed: {
             user() {
@@ -71,4 +79,7 @@
     }
 </script>
 <style scoped>
+    .hideCreateList{
+        display: none;
+    }
 </style>

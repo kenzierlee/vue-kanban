@@ -14,7 +14,7 @@
           aria-expanded="false">
           Add A Task
         </button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" id="createTaskForm">
           <form class="px-4 py-3" @submit.prevent="createTask">
             <div class="form-group">
               <label for="task-title">Title</label>
@@ -54,8 +54,16 @@
       },
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
-      }
-
+      },
+      showDropdown(){
+                var element = document.getElementById("createListDropdown")
+                element.classList.remove("hideCreateTask")
+                document.getElementById("createTaskForm").reset()
+            },
+            hideDropdown(){
+                var element = document.getElementById("createListDropdown")
+                element.classList.add("hideCreateTask")
+            },
     },
     computed: {
       user() {
@@ -75,4 +83,7 @@
 </script>
 
 <style scoped>
+      .hideCreateTask{
+        display: none;
+    }
 </style>
