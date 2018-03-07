@@ -8,11 +8,11 @@ var Lists = require('../models/list');
 router.post('/lists', (req, res, next) => {
   req.body.userId = req.session.uid
   Lists.create(req.body)
-    .then(Lists => {
-      if (!Lists) {
+    .then(lists => {
+      if (!lists) {
         return res.status(400).send({ error: "Invalid Id" })
       }
-      return res.send(Lists)
+      return res.send(lists)
     })
     .catch(next)
 })
@@ -20,10 +20,10 @@ router.post('/lists', (req, res, next) => {
 //Edit a List
 router.put('/lists/:listId', (req, res, next) => {
   Lists.findByIdAndUpdate(req.params.listId, req.body, { new: true })
-    .then(Lists => {
+    .then(lists => {
       return res.send({
         message: 'Sucessfully updated the Lists',
-        data: Lists
+        data: lists
       })
     })
     .catch(next)
@@ -32,7 +32,7 @@ router.put('/lists/:listId', (req, res, next) => {
 //Delete a List
 router.delete('/lists/:listId', (req, res, next) => {
   Lists.findByIdAndRemove(req.params.listId)
-    .then(Lists => {
+    .then(lists => {
       return res.send({
         message: 'Sucessfully deleted a Lists'
       })
@@ -43,8 +43,8 @@ router.delete('/lists/:listId', (req, res, next) => {
 //Get Users lists
 router.get('/:id/lists', (req, res, next) => {
   Lists.find({ userId: req.params.id })
-    .then(Lists => {
-      return res.send(Lists)
+    .then(lists => {
+      return res.send(lists)
     })
     .catch(next)
 })
@@ -52,8 +52,8 @@ router.get('/:id/lists', (req, res, next) => {
 //Get lists by Board
 router.get('/boards/:boardId/lists', (req, res, next) => {
   Lists.find({ boardId: req.params.boardId })
-    .then(Lists => {
-      return res.send(Lists)
+    .then(lists => {
+      return res.send(lists)
     })
     .catch(next)
 })
