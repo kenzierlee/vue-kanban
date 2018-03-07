@@ -42,21 +42,21 @@ router.delete('/tasks/:taskId', (req, res, next) => {
     .catch(next)
 })
 
-//Get Users tasks
-router.get('/:id/tasks', (req, res, next) => {
-  Tasks.find({ userId: req.params.id })
-    .then(tasks => {
-      return res.send(tasks)
-    })
-    .catch(next)
-})
+// //Get Users tasks
+// router.get('/:id/tasks', (req, res, next) => {
+//   Tasks.find({ userId: req.params.id })
+//     .then(tasks => {
+//       return res.send(tasks)
+//     })
+//     .catch(next)
+// })
 
-router.get('/boards/:boardId/tasks', (req,res,next)=>{
-  Tasks.find({boardId: req.params.boardId}).then(tasks =>{
-    return res.send(tasks)
-  })
-  .catch(next)
-})
+// router.get('/boards/:boardId/tasks', (req,res,next)=>{
+//   Tasks.find({boardId: req.params.boardId}).then(tasks =>{
+//     return res.send(tasks)
+//   })
+//   .catch(next)
+// })
 
 //Get tasks by lists
 router.get('/lists/:listId/tasks', (req, res, next) => {

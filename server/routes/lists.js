@@ -40,14 +40,14 @@ router.delete('/lists/:listId', (req, res, next) => {
     .catch(next)
 })
 
-//Get Users lists
-router.get('/:id/lists', (req, res, next) => {
-  Lists.find({ userId: req.params.id })
-    .then(lists => {
-      return res.send(lists)
-    })
-    .catch(next)
-})
+// //Get Users lists
+// router.get('/:id/lists', (req, res, next) => {
+//   Lists.find({ userId: req.params.id })
+//     .then(lists => {
+//       return res.send(lists)
+//     })
+//     .catch(next)
+// })
 
 //Get lists by Board
 router.get('/boards/:boardId/lists', (req, res, next) => {
