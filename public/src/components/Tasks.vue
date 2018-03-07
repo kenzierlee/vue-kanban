@@ -90,7 +90,7 @@
       },
       changeList(list){
         
-        this.$store.dispatch('changeList', {list, task: this.task._id})
+        this.$store.dispatch('changeList', {list, task: this.task._id, oldList: this.task.listId})
       }
     },
     computed: {

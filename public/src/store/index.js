@@ -81,7 +81,6 @@ export default new vuex.Store({
             })
         },
         getLists({commit, dispatch}, payload){
-            console.log(payload)
             api.get('boards/'+ payload + '/lists').then(res =>{
                 commit('setBoardLists', res.data)
             })
@@ -119,9 +118,8 @@ export default new vuex.Store({
         },
         changeList({commit, dispatch}, payload){
             api.put('/tasks/'+ payload.task, {listId: payload.list._id}).then(res =>{
-                console.log(res)
                 dispatch('getTasks', payload.list._id)
-                dispatch('getLists', payload.list.boardId)
+                dispatch('getTasks', payload.oldList)
             })
         },
         //board actions
