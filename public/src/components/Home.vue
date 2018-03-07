@@ -28,10 +28,11 @@
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item" v-for="board in boards">
-              <strong>{{board.title}}</strong>
-              <p>Created: {{board.created}}</p>
-              <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
-              <router-link :to="{name: 'Board', params: {boardId: board._id}}">Board</router-link>
+              <router-link :to="{name: 'Board', params: {boardId: board._id}}">
+                <strong>{{board.title}}</strong>
+                <p>Created: {{board.created}}</p>
+              </router-link>
+                <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
             </li>
           </ul>
         </div>
@@ -83,11 +84,12 @@
 </script>
 
 <style scoped>
-  .home{
+  .home {
     background-color: whitesmoke;
     height: 100vh;
   }
-  .boardCard{
+
+  .boardCard {
     margin: 2rem;
     width: 25rem;
     border: 2px solid black;
