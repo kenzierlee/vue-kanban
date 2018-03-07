@@ -62,6 +62,11 @@ export default new vuex.Store({
                 commit('setComments', {id: payload, comment: res.data})
             })
         },
+        editComment({commit, dispatch}, payload){
+            api.put('comments/'+ payload._id, payload).then(res =>{
+                dispatch('getComments', payload.taskId)
+            })
+        },
         deleteComment({commit, dispatch}, payload){
             api.delete('comments/'+ payload._id).then(res =>{
                 dispatch('getComments', payload.taskId)
@@ -79,6 +84,11 @@ export default new vuex.Store({
                 commit('setBoardLists', res.data)
             })
         },
+        editList({commit, dispatch}, payload){
+            api.put('lists/' + payload._id, payload).then(res =>{
+                dispatch('getLists', payload.boardId)
+            })
+        },
         deleteList({commit, dispatch}, payload){
             api.delete('lists/' + payload._id).then(res =>{
                 dispatch('getLists', payload.boardId)
@@ -93,6 +103,11 @@ export default new vuex.Store({
         getTasks({commit, dispatch}, payload){
             api.get('lists/'+payload+'/tasks').then(res =>{
                 commit('setTasks', {id: payload, task: res.data})
+            })
+        },
+        editTask({commit, dispatch}, payload){
+            api.put('/tasks/'+ payload._id, payload).then(res =>{
+                dispatch('getTasks', payload.listId)
             })
         },
         deleteTask({commit, dispatch}, payload){

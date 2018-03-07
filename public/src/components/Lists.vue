@@ -3,6 +3,22 @@
     <div>
       <h3>{{list.title}}</h3>
       <i class="fas fa-times-circle" @click="deleteList(list)"></i>
+      <div class="dropdown">
+          <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
+          <div class="dropdown-menu">
+              <form class="px-4 py-3" @submit.prevent="editList(list)">
+                  <div class="form-group">
+                      <label for="list-title">Title</label>
+                      <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
+                  </div>
+                  <div class="form-group">
+                      <label for="list-description">Description</label>
+                      <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Edit List</button>
+              </form>
+          </div>
+      </div>
       <p>
         <strong>{{list.description}}</strong>
       </p>
@@ -13,7 +29,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown">
           Add A Task
         </button>
-        <div class="dropdown-menu" id="createTaskForm">
+        <div class="dropdown-menu">
           <form class="px-4 py-3" @submit.prevent="createTask">
             <div class="form-group">
               <label for="task-title">Title</label>
@@ -64,6 +80,10 @@
         var element = document.getElementById("createListDropdown")
         element.classList.add("hideCreateTask")
       },
+      editList(list){
+        this.$store.dispatch('editList', list)
+      }
+
     },
     computed: {
       user() {

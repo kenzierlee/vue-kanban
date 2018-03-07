@@ -20,7 +20,7 @@ router.post('/tasks', (req, res, next) => {
 
 //Edit a Task
 router.put('/tasks/:taskId', (req, res, next) => {
-  Tasks.findByIdAndUpdate(req.params.taskId, req.body, { new: true })
+  Tasks.findByIdAndUpdate(req.params.taskId, req.body)
     .then(tasks => {
       return res.send({
         message: 'Sucessfully updated the Tasks',
