@@ -79,6 +79,11 @@ export default new vuex.Store({
                 commit('setBoardLists', res.data)
             })
         },
+        editList({commit, dispatch}, payload){
+            api.put('lists/' + payload._id, payload).then(res =>{
+                dispatch('getLists', payload.boardId)
+            })
+        },
         deleteList({commit, dispatch}, payload){
             api.delete('lists/' + payload._id).then(res =>{
                 dispatch('getLists', payload.boardId)

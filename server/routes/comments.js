@@ -21,7 +21,7 @@ router.post('/comments', (req, res, next) => {
 
 //Edit a Comment
 router.put('/comments/:commentId', (req, res, next) => {
-  Comments.findByIdAndUpdate(req.params.commentId, req.body, { new: true })
+  Comments.findByIdAndUpdate(req.params.commentId, req.body)
     .then(comments => {
       return res.send({
         message: 'Sucessfully updated the Comments',

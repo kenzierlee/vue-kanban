@@ -19,7 +19,7 @@ router.post('/lists', (req, res, next) => {
 
 //Edit a List
 router.put('/lists/:listId', (req, res, next) => {
-  Lists.findByIdAndUpdate(req.params.listId, req.body, { new: true })
+  Lists.findByIdAndUpdate(req.params.listId, req.body)
     .then(lists => {
       return res.send({
         message: 'Sucessfully updated the Lists',

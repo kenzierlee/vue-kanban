@@ -31,19 +31,19 @@
               <router-link :to="{name: 'Board', params: {boardId: board._id}}">
                 <strong>{{board.title}}</strong>
               </router-link>
-                <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
-                <div class="dropdown">
-                      <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
-                    <div class="dropdown-menu">
-                      <form class="px-4 py-3" @submit.prevent="editBoard(board)">
-                        <div class="form-group">
-                          <label for="board-title">Title</label>
-                          <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Board</button>
-                      </form>
+              <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
+              <div class="dropdown">
+                <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
+                <div class="dropdown-menu">
+                  <form class="px-4 py-3" @submit.prevent="editBoard(board)">
+                    <div class="form-group">
+                      <label for="board-title">Title</label>
+                      <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
                     </div>
-                  </div>
+                    <button type="submit" class="btn btn-primary">Add Board</button>
+                  </form>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -75,7 +75,7 @@
       createBoard() {
         this.$store.dispatch('createBoard', this.board)
       },
-      editBoard(board){
+      editBoard(board) {
         this.$store.dispatch('editBoard', board)
       },
       deleteBoard(board) {

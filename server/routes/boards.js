@@ -18,7 +18,7 @@ router.post('/boards/', (req, res, next) => {
 
 //Edit a Board
 router.put('/:userId/boards/:boardId', (req, res, next) => {
-  Board.findByIdAndUpdate(req.params.boardId, req.body, { new: true })
+  Board.findByIdAndUpdate(req.params.boardId, req.body)
     .then(board => {
       return res.send(board)
     })
