@@ -10,8 +10,7 @@
         <Tasks :task="task"></Tasks>
       </div>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown">
           Add A Task
         </button>
         <div class="dropdown-menu" id="createTaskForm">
@@ -24,7 +23,7 @@
               <label for="task-description">Description</label>
               <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
             </div>
-            <button type="submit" class="btn btn-primary">Add Task</button>
+            <button type="submit" class="btn btn-primary" @click="hideDropdown(task._id)">Add Task</button>
           </form>
         </div>
       </div>
@@ -55,15 +54,16 @@
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
       },
-      showDropdown(){
-                var element = document.getElementById("createListDropdown")
-                element.classList.remove("hideCreateTask")
-                document.getElementById("createTaskForm").reset()
-            },
-            hideDropdown(){
-                var element = document.getElementById("createListDropdown")
-                element.classList.add("hideCreateTask")
-            },
+      showDropdown() {
+        var element = document.getElementById("createListDropdown")
+        element.classList.remove("hideCreateTask")
+        document.getElementById("createTaskForm").reset()
+      },
+      hideDropdown(id) {
+        console.log(id)
+        var element = document.getElementById("createListDropdown")
+        element.classList.add("hideCreateTask")
+      },
     },
     computed: {
       user() {
@@ -83,7 +83,7 @@
 </script>
 
 <style scoped>
-      .hideCreateTask{
-        display: none;
-    }
+  .hideCreateTask {
+    display: none;
+  }
 </style>
