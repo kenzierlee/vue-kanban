@@ -18,13 +18,9 @@ router.post('/boards/', (req, res, next) => {
 
 //Edit a Board
 router.put('/:userId/boards/:boardId', (req, res, next) => {
-  req.body.userId = req.session.uid
-  Board.findByIdAndUpdate(req.params.boardId, req.body, {new: true})
+  Board.findByIdAndUpdate(req.params.boardId, req.body, { new: true })
     .then(board => {
-      return res.send({
-        message: 'Sucessfully updated the Board',
-        data: board
-      })
+      return res.send(board)
     })
     .catch(next)
 })
