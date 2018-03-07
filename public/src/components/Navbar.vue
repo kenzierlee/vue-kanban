@@ -1,8 +1,14 @@
 <template>
     <div class="navbar">
         <nav>
-            <span class="navbar-brand mb-0 h1">KanBan</span>
-            <button @click='logout' class='btn btn-primary'>Logout</button>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 justify-content-space-between ">
+                        <img src="../assets/red-logo.png" height="80">
+                        <button @click='logout' class='btn btn-secondary'><b>Logout</b></button>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
 </template>
@@ -23,8 +29,9 @@
 </script>
 <style scoped>
     .navbar{
-        background-color: steelblue;
+        background-color: rgb(193, 82, 84);
         display: flex;
         align-content: center;
-        border-bottom: 3px solid slategray;    }
+        border-bottom: 3px solid #454545;
+        }
 </style>
