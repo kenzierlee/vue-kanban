@@ -21,7 +21,8 @@ export default new Router({
     {
       path: '/Board/:boardId/lists',
       name: 'Board',
-      component: Board
+      component: Board,
+      props: true
     }
   ]
 });

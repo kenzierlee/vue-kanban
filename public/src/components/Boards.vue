@@ -40,6 +40,7 @@
     import Navbar from './Navbar.vue'
     export default {
         name: 'Boards',
+        props: ['boardId'],
         mounted(){
             this.$store.dispatch('getLists', this.$route.params.boardId)
         },
@@ -62,6 +63,11 @@
             },
             lists(){
                 return this.$store.state.boardLists
+            }
+        },
+        watch: {
+            boardId: function(newId, oldId){
+                this.$store.dispatch('getLists', newId)
             }
         },
         components: {

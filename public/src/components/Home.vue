@@ -109,7 +109,8 @@
     background-color: whitesmoke;
     height: 100%;
   }
-  .hideDropdown{
+
+  .hideDropdown {
     display: none
   }
 
