@@ -1,17 +1,21 @@
 <template>
-  <div class="tasks">
+  <div class="tasks" 
+  
+  draggable="true" v-on:dragstart.capture="changeList"
+    :task='task'
+  >
     <div class="card">
       <div class="card-header" data-toggle="modal" :data-target="'#'+task._id">
         <h5>{{task.title}}</h5>
         <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+        <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
           Change List
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" v-for="list in lists">
             <p @click="changeList(list)">{{list.title}}</p>
           </a>
-        </div>
+        </div> -->
         <div class="dropdown">
           <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
           <div class="dropdown-menu">
@@ -28,7 +32,6 @@
             </form>
           </div>
         </div>
-
       </div>
       <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
         <div class="modal-dialog" role="document">
@@ -90,8 +93,11 @@
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
       },
-      changeList(list) {
-        this.$store.dispatch('changeList', { list, task: this.task._id, oldList: this.task.listId })
+      changeList(event) {
+        console.log(event)
+        event.dataTransfer.setData('text/javascript', JSON.stringify(this.task))
+        console.log("Moving Task: ", this.task)
+        // this.$store.dispatch('changeList', {task: this.task._id, oldList: this.task.listId })
       }
     },
     computed: {

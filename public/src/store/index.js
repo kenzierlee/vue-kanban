@@ -116,9 +116,9 @@ export default new vuex.Store({
             })
         },
         changeList({commit, dispatch}, payload){
-            api.put('/tasks/'+ payload.task, {listId: payload.list._id}).then(res =>{
-                dispatch('getTasks', payload.list._id)
-                dispatch('getTasks', payload.oldList)
+            api.put('/tasks/'+ payload.movingTask._id, {listId: payload.task.listId}).then(res =>{
+                dispatch('getTasks', payload.movingTask.listId)
+                dispatch('getTasks', payload.task.listId)
             })
         },
         //board actions

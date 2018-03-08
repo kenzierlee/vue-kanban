@@ -1,5 +1,8 @@
 <template>
-  <div class="lists card">
+  <div class="lists card"
+  
+  droppable="true" v-on:drop.capture="changeList" ondragover="event.preventDefault()"
+  >
     <div class="card-header">
       <h3>{{list.title}}</h3>
       <div class="listIcons">
@@ -28,7 +31,7 @@
     <div :key="task._id" v-for="task in tasks" class="taskTitle">
       <Tasks :task="task"></Tasks>
     </div>
-    <form class="addTaskForm" @submit.prevent.reset="createTask" id="addTaskForm">
+    <form class="addTaskForm" @submit.prevent="createTask" id="addTaskForm">
       <input v-model="task.title" type="text" class="form-control formBox" id="task-title" placeholder="New Task">
       <button type="submit" class="btn">
         <i class="fas fa-plus"></i>
@@ -50,7 +53,7 @@
       return {
         task: {
           boardId: this.list.boardId,
-          listId: this.list._id
+          listId: this.list._id,
         }
       }
     },
@@ -74,6 +77,10 @@
       },
       editList(list) {
         this.$store.dispatch('editList', list)
+      },
+      changeList(event){
+        var movingTask = JSON.parse(event.dataTransfer.getData('text/javascript'))
+        this.$store.dispatch('changeList', {task: this.task, movingTask})
       }
 
     },
