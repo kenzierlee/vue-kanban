@@ -6,7 +6,7 @@
                 <div class="col-12 d-flex justify-content-end">
                     <!-- <h3>{{board.title}}</h3> -->
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="add-list" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Add A List
                         </button>
@@ -48,6 +48,7 @@
         methods: {
             createList(list) {
                 this.$store.dispatch('createList', this.list)
+                $('#add-list').dropdown('toggle')
             }
         },
         computed: {

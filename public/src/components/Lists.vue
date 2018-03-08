@@ -3,9 +3,9 @@
     <div class="card-header">
       <h3>{{list.title}}</h3>
       <div class="listIcons">
-        <i class="fas fa-times-circle" @click="deleteList(list)"></i>
+        <i class="fas fa-times-circle delete-button" @click="deleteList(list)"></i>
         <div class="dropdown">
-          <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
+          <i class="fas fa-edit dropdown-toggle edit-button" :id="list._id" data-toggle="dropdown"></i>
           <div class="dropdown-menu">
             <form class="px-4 py-3" @submit.prevent="editList(list)">
               <div class="form-group">
@@ -71,6 +71,7 @@
       },
       editList(list) {
         this.$store.dispatch('editList', list)
+        $('#'+list._id).dropdown('toggle')
       },
       changeList(event) {
         var movingTask = JSON.parse(event.dataTransfer.getData('text/javascript'))
@@ -129,4 +130,6 @@
     border: 0;
     box-shadow: none;
   }
+
+
 </style>
