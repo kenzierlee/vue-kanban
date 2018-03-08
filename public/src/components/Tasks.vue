@@ -1,7 +1,8 @@
 <template>
-  <div class="tasks" >
+  <div class="tasks">
     <div class="card">
-      <div class="card-header" data-toggle="modal" :data-target="'#'+task._id" draggable="true" v-on:dragstart.capture="changeList" :task='task'>
+      <div class="card-header" data-toggle="modal" :data-target="'#'+task._id" draggable="true" v-on:dragstart.capture="changeList"
+        :task='task'>
         <h5>{{task.title}}</h5>
       </div>
       <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
@@ -9,37 +10,43 @@
           <div class="modal-content">
             <div class="card-body">
               <div class="dropdown">
-                <i class="fas fa-edit dropdown-toggle" id="edit-task" data-toggle="dropdown"></i>
-                <div class="dropdown-menu">
-                  <form class="px-4 py-3" @submit.prevent="editTask(task)">
-                    <div class="form-group">
-                      <label for="task-title">Title</label>
-                      <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
-                    </div>
-                    <div class="form-group">
-                      <label for="task-description">Description</label>
-                      <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Edit Task</button>
-                  </form>
+                <div class="modal-header">
+                  <i class="fas fa-edit dropdown-toggle" id="edit-task" data-toggle="dropdown"></i>
+                  <div class="dropdown-menu">
+                    <form class="px-4 py-3" @submit.prevent="editTask(task)">
+                      <div class="form-group">
+                        <label for="task-title">Title</label>
+                        <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
+                      </div>
+                      <div class="form-group">
+                        <label for="task-description">Description</label>
+                        <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Edit Task</button>
+                    </form>
+                  </div>
+                  <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
                 </div>
               </div>
-              <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
-              <p>
-                <b>{{task.title}}</b>
-              </p>
-              <p>{{task.description}}</p>
+              <div class="modal-body">
+                <p>
+                  <b>{{task.title}}</b>
+                </p>
+                <p>{{task.description}}</p>
+              </div>
+              <div class="comments">
+                <form class="px-4 py-3" @submit.prevent="createComment">
+                  <div class="form-group">
+                    <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Comment</button>
+                </form>
+              </div>
             </div>
-            <div class="comments">
-              <form class="px-4 py-3" @submit.prevent="createComment">
-                <div class="form-group">
-                  <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Comment</button>
-              </form>
-            </div>
-            <div :key="comment._id" v-for="comment in comments">
-              <Comments :comment="comment"></Comments>
+            <div class="modal-footer">
+              <div :key="comment._id" v-for="comment in comments">
+                <Comments :comment="comment"></Comments>
+              </div>
             </div>
           </div>
         </div>
@@ -104,5 +111,12 @@
 </script>
 
 <style scoped>
- 
+  .modal-header {
+    display: inline;
+    align-content: flex-end;
+  }
+
+  .modal-body {
+    padding-top: 2rem;
+  }
 </style>

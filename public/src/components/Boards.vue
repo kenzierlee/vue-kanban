@@ -47,6 +47,7 @@
         methods: {
             createList(list) {
                 this.$store.dispatch('createList', this.list)
+                $('#add-list').dropdown('toggle')
             }
         },
         computed: {
