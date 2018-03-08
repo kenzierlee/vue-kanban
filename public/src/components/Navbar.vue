@@ -5,17 +5,19 @@
             <router-link :to="{name: 'Home'}">
                 <button class="btn homeBtn" v-if="$route.name != 'Home'">Home</button>
             </router-link>
-            <button class="btn chooseBoard dropdown-toggle m-1" type="button" data-toggle="dropdown" v-if="$route.name != 'Home'">
-                Change Board
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" v-for="board in boards">
-                    <router-link :to="{name: 'Board', params: {boardId: board._id}}">
-                        <p>
-                            <strong>{{board.title}}</strong>
-                        </p>
-                    </router-link>
-                </a>
+            <div class="dropdown dropright d-inline-flex">
+                <button class="btn chooseBoard dropdown-toggle m-1" type="button" data-toggle="dropdown" v-if="$route.name != 'Home'">
+                    Change Board
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" v-for="board in boards">
+                        <router-link :to="{name: 'Board', params: {boardId: board._id}}" class="link">
+                            <p>
+                                <strong>{{board.title}}</strong>
+                            </p>
+                        </router-link>
+                    </a>
+                </div>
             </div>
         </div>
         <button @click='logout' class='btn logout m-1'>
@@ -56,13 +58,32 @@
         justify-content: space-between;
     }
     .homeBtn {
-        background-color: rgb(154,218,181);
+        background-color: rgb(154, 218, 181);
+    }
+    .homeBtn:hover {
+        background-color: rgba(154, 218, 181, .75);
+
     }
     .logout {
-        background-color: rgb(211,126,102);
+        background-color: rgb(211, 126, 102);
         color: whitesmoke;
     }
-    .chooseBoard{
-        background-color: rgb(240,198,148);
+    .logout:hover {
+        background-color: rgba(211, 126, 102, .75);
+
+    }
+    .chooseBoard {
+        background-color: rgb(240, 198, 148);
+    }
+    .chooseBoard:hover {
+        background-color: rgba(240, 198, 148, .75);
+
+    }
+    .link {
+        color: black
+    }
+    .dropdown-item:hover {
+        background-color: rgba(154, 218, 181, .75);
+
     }
 </style>
