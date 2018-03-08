@@ -25,14 +25,14 @@
     <p>
       <strong>{{list.description}}</strong>
     </p>
-    <div :key="task._id" v-for="task in tasks">
+    <div :key="task._id" v-for="task in tasks" class="taskTitle">
       <Tasks :task="task"></Tasks>
     </div>
-    <form class="px-4 py-3" @submit.prevent="createTask">
-      <div class="form-group">
-        <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="New Task">
-      </div>
-      <button type="submit" class="btn btn-primary" @click="hideDropdown(task._id)">Add Task</button>
+    <form class="addTaskForm" @submit.prevent.reset="createTask" id="addTaskForm">
+      <input v-model="task.title" type="text" class="form-control formBox" id="task-title" placeholder="New Task">
+      <button type="submit" class="btn">
+        <i class="fas fa-plus"></i>
+      </button>
     </form>
   </div>
   </div>
@@ -57,6 +57,7 @@
     methods: {
       createTask(task) {
         this.$store.dispatch('createTask', this.task)
+        this.task = {}
       },
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
@@ -64,7 +65,7 @@
       showDropdown() {
         var element = document.getElementById("createListDropdown")
         element.classList.remove("hideCreateTask")
-        document.getElementById("createTaskForm").reset()
+        document.getElementById("addTaskForm").reset()
       },
       hideDropdown(id) {
         console.log(id)
@@ -94,6 +95,9 @@
 </script>
 
 <style scoped>
+  .lists{
+    margin-bottom: 2rem
+  }
   .hideCreateTask {
     display: none;
   }
@@ -107,5 +111,17 @@
 
   .listIcons {
     display: block;
+  }
+.taskTitle{
+  margin: .5rem;
+  margin-bottom: .2rem;
+}
+  .addTaskForm {
+    display: inline-flex;
+    justify-content: space-between;
+  }
+  .formBox{
+    border: 0;
+    box-shadow: none;
   }
 </style>
