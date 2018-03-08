@@ -1,8 +1,5 @@
 <template>
-  <div class="lists card"
-  
-  droppable="true" v-on:drop.capture="changeList" ondragover="event.preventDefault()"
-  >
+  <div class="lists card" droppable="true" v-on:drop.capture="changeList" ondragover="event.preventDefault()">
     <div class="card-header">
       <h3>{{list.title}}</h3>
       <div class="listIcons">

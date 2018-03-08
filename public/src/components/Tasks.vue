@@ -1,9 +1,5 @@
 <template>
-  <div class="tasks" 
-  
-  draggable="true" v-on:dragstart.capture="changeList"
-    :task='task'
-  >
+  <div class="tasks" draggable="true" v-on:dragstart.capture="changeList" :task='task'>
     <div class="card">
       <div class="card-header" data-toggle="modal" :data-target="'#'+task._id">
         <h5>{{task.title}}</h5>
@@ -94,10 +90,7 @@
         this.$store.dispatch('deleteTask', task)
       },
       changeList(event) {
-        console.log(event)
         event.dataTransfer.setData('text/javascript', JSON.stringify(this.task))
-        console.log("Moving Task: ", this.task)
-        // this.$store.dispatch('changeList', {task: this.task._id, oldList: this.task.listId })
       }
     },
     computed: {
