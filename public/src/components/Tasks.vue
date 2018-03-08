@@ -3,55 +3,43 @@
     <div class="card">
       <div class="card-header" data-toggle="modal" :data-target="'#'+task._id">
         <h5>{{task.title}}</h5>
-        <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
-        <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-          Change List
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" v-for="list in lists">
-            <p @click="changeList(list)">{{list.title}}</p>
-          </a>
-        </div> -->
-        <div class="dropdown">
-          <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
-          <div class="dropdown-menu">
-            <form class="px-4 py-3" @submit.prevent="editTask(task)">
-              <div class="form-group">
-                <label for="task-title">Title</label>
-                <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
-              </div>
-              <div class="form-group">
-                <label for="task-description">Description</label>
-                <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
-              </div>
-              <button type="submit" class="btn btn-primary">Edit Task</button>
-            </form>
-          </div>
-        </div>
       </div>
       <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="card-body">
+              <div class="dropdown">
+                <i class="fas fa-edit dropdown-toggle" id="edit-task" data-toggle="dropdown"></i>
+                <div class="dropdown-menu">
+                  <form class="px-4 py-3" @submit.prevent="editTask(task)">
+                    <div class="form-group">
+                      <label for="task-title">Title</label>
+                      <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                      <label for="task-description">Description</label>
+                      <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Edit Task</button>
+                  </form>
+                </div>
+              </div>
+              <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
               <p>
                 <b>{{task.title}}</b>
               </p>
               <p>{{task.description}}</p>
-              <!-- <div v-for="comment in comments">
-          <p>{{user.userName}}</p>
-          <p>{{comment.comment}}</p>
-        </div> -->
-              <div class="comments">
-                <form class="px-4 py-3" @submit.prevent="createComment">
-                  <div class="form-group">
-                    <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Add Comment</button>
-                </form>
-              </div>
-              <div :key="comment._id" v-for="comment in comments">
-                <Comments :comment="comment"></Comments>
-              </div>
+            </div>
+            <div class="comments">
+              <form class="px-4 py-3" @submit.prevent="createComment">
+                <div class="form-group">
+                  <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+              </form>
+            </div>
+            <div :key="comment._id" v-for="comment in comments">
+              <Comments :comment="comment"></Comments>
             </div>
           </div>
         </div>
@@ -72,6 +60,7 @@
     data() {
       return {
         comment: {
+          comment: '',
           boardId: this.task.boardId,
           listId: this.task.listId,
           taskId: this.task._id
@@ -85,6 +74,7 @@
       },
       editTask(task) {
         this.$store.dispatch('editTask', task)
+        $('#edit-task').dropdown('toggle')
       },
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
