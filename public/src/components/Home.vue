@@ -3,7 +3,7 @@
     <navbar></navbar>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 d-flex justify-content-end">
+        <div class="col-sm-12 d-flex justify-content-end">
           <div class="dropdown dropleft">
             <button class="btn addBoardBtn dropdown-toggle m-2" type="button" id="addBoard" data-toggle="dropdown">
               Add A Board

@@ -2,18 +2,17 @@
     <div class="boards">
         <navbar></navbar>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-end">
-                    <!-- <h3>{{board.title}}</h3> -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                <div class="row">
+                  <div class="col-sm-12 d-flex justify-content-end">
+                    <h3>{{board.title}}</h3>
+                    <div class="dropdown dropleft">
+                        <button class="btn addListBtn dropdown-toggle m-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Add A List
                         </button>
                         <div class="dropdown-menu">
                             <form class="px-4 py-3" @submit.prevent="createList">
                                 <div class="form-group">
-                                    <label for="list-title">Title</label>
                                     <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add List</button>
@@ -73,4 +72,20 @@
     }
 </script>
 <style scoped>
+    .addListBtn {
+        background-color: rgb(240, 198, 148);
+    }
+    .addListBtn:hover {
+        background-color: rgba(240, 198, 148, .75);
+    }
+    .dropdown-menu {
+    width: 20rem;
+    margin-right: .5rem;
+  }
+  .boards{
+    background-color: whitesmoke;
+    height: 100%;
+    min-height: 100vh
+  }
+
 </style>
