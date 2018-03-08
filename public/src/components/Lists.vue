@@ -1,49 +1,40 @@
 <template>
-  <div class="lists">
-    <div>
+  <div class="lists card">
+    <div class="card-header">
       <h3>{{list.title}}</h3>
-      <i class="fas fa-times-circle" @click="deleteList(list)"></i>
-      <div class="dropdown">
+      <div class="listIcons">
+        <i class="fas fa-times-circle" @click="deleteList(list)"></i>
+        <div class="dropdown">
           <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"></i>
           <div class="dropdown-menu">
-              <form class="px-4 py-3" @submit.prevent="editList(list)">
-                  <div class="form-group">
-                      <label for="list-title">Title</label>
-                      <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
-                  </div>
-                  <div class="form-group">
-                      <label for="list-description">Description</label>
-                      <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Edit List</button>
-              </form>
+            <form class="px-4 py-3" @submit.prevent="editList(list)">
+              <div class="form-group">
+                <label for="list-title">Title</label>
+                <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
+              </div>
+              <div class="form-group">
+                <label for="list-description">Description</label>
+                <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
+              </div>
+              <button type="submit" class="btn btn-primary">Edit List</button>
+            </form>
           </div>
-      </div>
-      <p>
-        <strong>{{list.description}}</strong>
-      </p>
-      <div :key="task._id" v-for="task in tasks">
-        <Tasks :task="task"></Tasks>
-      </div>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown">
-          Add A Task
-        </button>
-        <div class="dropdown-menu">
-          <form class="px-4 py-3" @submit.prevent="createTask">
-            <div class="form-group">
-              <label for="task-title">Title</label>
-              <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
-            </div>
-            <div class="form-group">
-              <label for="task-description">Description</label>
-              <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
-            </div>
-            <button type="submit" class="btn btn-primary" @click="hideDropdown(task._id)">Add Task</button>
-          </form>
         </div>
       </div>
     </div>
+    <p>
+      <strong>{{list.description}}</strong>
+    </p>
+    <div :key="task._id" v-for="task in tasks">
+      <Tasks :task="task"></Tasks>
+    </div>
+    <form class="px-4 py-3" @submit.prevent="createTask">
+      <div class="form-group">
+        <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="New Task">
+      </div>
+      <button type="submit" class="btn btn-primary" @click="hideDropdown(task._id)">Add Task</button>
+    </form>
+  </div>
   </div>
 </template>
 
@@ -80,7 +71,7 @@
         var element = document.getElementById("createListDropdown")
         element.classList.add("hideCreateTask")
       },
-      editList(list){
+      editList(list) {
         this.$store.dispatch('editList', list)
       }
 
@@ -105,5 +96,16 @@
 <style scoped>
   .hideCreateTask {
     display: none;
+  }
+
+  .card-header {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(180, 88, 87, .8)
+  }
+
+  .listIcons {
+    display: block;
   }
 </style>
