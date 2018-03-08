@@ -1,7 +1,7 @@
 <template>
   <div class="tasks">
     <div class="card">
-      <div class="card-header" data-toggle="modal" data-target="#'task._id'">
+      <div class="card-header" data-toggle="modal" :data-target="'#'+task._id">
         <h5>{{task.title}}</h5>
         <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -30,7 +30,7 @@
         </div>
 
       </div>
-      <div class="modal" tabindex="-1" role="dialog" id='task._id'>
+      <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="card-body">
