@@ -108,7 +108,7 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(180, 88, 87, .8)
+    background-color: rgba(211,126,102, .8);
   }
 
   .listIcons {

@@ -4,17 +4,16 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-end">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown('addBoard')">
+          <div class="dropdown dropleft">
+            <button class="btn addBoardBtn dropdown-toggle m-2" type="button" id="addBoard" data-toggle="dropdown">
               Add A Board
             </button>
             <div class="dropdown-menu" id="addBoard">
               <form class="px-4 py-3" @submit.prevent="createBoard">
                 <div class="form-group">
-                  <label for="board-title">Title</label>
                   <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
                 </div>
-                <button type="submit" class="btn btn-primary" @click="hideDropdown('addBoard')">Add Board</button>
+                <button type="submit" class="btn dropdownBtn">Add Board</button>
               </form>
             </div>
           </div>
@@ -22,24 +21,24 @@
       </div>
       <div class="card boardCard">
         <div class="card-header">
-          <h5>My Boards</h5>
+          <h3>My Boards</h3>
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item" v-for="board in boards">
-              <router-link :to="{name: 'Board', params: {boardId: board._id}}">
+              <router-link :to="{name: 'Board', params: {boardId: board._id}}" class="link">
                 <strong>{{board.title}}</strong>
               </router-link>
               <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
               <div class="dropdown">
-                <i class="fas fa-edit dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" @click="showDropdown(board._id)"></i>
+                <i class="fas fa-edit dropdown-toggle" :id="board._id" data-toggle="dropdown"></i>
                 <div class="dropdown-menu" id="board._id">
                   <form class="px-4 py-3" @submit.prevent="editBoard(board)">
                     <div class="form-group">
                       <label for="board-title">Title</label>
                       <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
                     </div>
-                    <button type="submit" class="btn btn-primary" @click="hideDropdown(board._id)">Add Board</button>
+                    <button type="submit" class="btn btn-primary">Edit Board</button>
                   </form>
                 </div>
               </div>
@@ -73,21 +72,15 @@
       },
       createBoard() {
         this.$store.dispatch('createBoard', this.board)
+        $("#addBoard").dropdown('toggle')
       },
       editBoard(board) {
         this.$store.dispatch('editBoard', board)
+        $("#" + board._id).dropdown('toggle')
       },
       deleteBoard(board) {
         this.$store.dispatch('deleteBoard', board)
-      },
-      showDropdown(id) {
-        console.log(id)
-        document.getElementById(id).classList.remove("hideDropdown")
-        // document.getElementById(id).reset()
-      },
-      hideDropdown(id) {
-        document.getElementById(id).classList.add("hideDropdown")
-      },
+      }
     },
     computed: {
       user() {
@@ -105,13 +98,34 @@
 </script>
 
 <style scoped>
+  .addBoardBtn {
+    background-color: rgb(240, 198, 148);
+  }
+
+  .dropdown-menu {
+    width: 20rem;
+    margin-right: .5rem;
+  }
+
+  .dropdownBtn {
+    background-color: rgb(154, 218, 181);
+  }
+
   .home {
     background-color: whitesmoke;
     height: 100%;
+    min-height: 100vh
   }
 
   .hideDropdown {
     display: none
+  }
+
+  .card-header {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(211, 126, 102, .8);
   }
 
   .boardCard {
@@ -119,5 +133,17 @@
     width: 25rem;
     border: 2px solid black;
     border-radius: 4px;
+  }
+
+  .link {
+    color: black
+  }
+
+  .list-group-item {
+    display: block;
+  }
+
+  .list-group-item:hover {
+    background-color: rgb(154, 218, 181);
   }
 </style>
