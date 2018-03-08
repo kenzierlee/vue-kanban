@@ -6,10 +6,10 @@
         <p>
           <strong>Please sign up or login to continue.</strong>
         </p>
-        <button type="button" class="btn btn-lg btn-success m-2" data-toggle="modal" data-target="#signUp">
+        <button type="button" class="btn btn-lg signUpBtn m-2" data-toggle="modal" data-target="#signUp">
           <b>Sign Up</b>
         </button>
-        <button type="button" class="btn btn-lg btn-info m-2" data-toggle="modal" data-target="#login">
+        <button type="button" class="btn btn-lg loginBtn m-2" data-toggle="modal" data-target="#login">
           <b>Login</b>
         </button>
       </div>
@@ -18,8 +18,6 @@
         <div class="modal fade" id="signUp" tabindex="-1" role="dialog">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-              </div>
               <form @submit.prevent="createUser(createdUser)">
                 <div class="modal-body">
                   <!-- username input -->
@@ -37,7 +35,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-lg btn-primary">
+                  <button type="submit" class="btn btn-lg submitBtn">
                     <b>Create User</b>
                   </button>
                   <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">
@@ -52,8 +50,6 @@
         <div class="modal fade" id="login" tabindex="-1" role="dialog">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-              </div>
               <form @submit.prevent="login(user)">
                 <div class="modal-body">
                   <div class="m-2">
@@ -66,7 +62,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-lg btn-primary">
+                  <button type="submit" class="btn btn-lg submitBtn">
                     <b>Login</b>
                   </button>
                   <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">
@@ -107,6 +103,14 @@
 
 
 <style scoped>
+  p {
+    padding-top: 16px
+  }
+
+  .modal-body {
+    color: black
+  }
+
   .login {
     background-color: #C15253;
     height: 100vh;
@@ -115,5 +119,33 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+  }
+
+  .signUpBtn {
+    background-color: rgb(154, 218, 181);
+    color: whitesmoke;
+    text-align: center;
+    width: 110px
+  }
+  .signUpBtn:hover{
+    background-color: rgba(154, 218, 181, .75)
+  }
+
+  .loginBtn {
+    background-color: rgb(240, 198, 148);
+    color: whitesmoke;
+    text-align: center;
+    width: 110px;
+  }
+  .loginBtn:hover{
+    background-color: rgba(240, 198, 148, .75)
+  }
+  .submitBtn {
+    background-color: rgb(193, 82, 84);
+    color: whitesmoke;
+  }
+  .submitBtn:hover{
+    background-color: rgba(193, 82, 84, .75)
+
   }
 </style>

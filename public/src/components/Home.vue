@@ -101,6 +101,10 @@
   .addBoardBtn {
     background-color: rgb(240, 198, 148);
   }
+  .addBoardBtn:hover{
+    background-color: rgba(240, 198, 148, .75);
+
+  }
 
   .dropdown-menu {
     width: 20rem;
@@ -144,6 +148,6 @@
   }
 
   .list-group-item:hover {
-    background-color: rgb(154, 218, 181);
+    background-color: rgba(154, 218, 181, .75);
   }
 </style>
