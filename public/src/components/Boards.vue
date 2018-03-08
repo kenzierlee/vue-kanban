@@ -16,10 +16,6 @@
                                     <label for="list-title">Title</label>
                                     <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
                                 </div>
-                                <div class="form-group">
-                                    <label for="list-description">Description</label>
-                                    <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
-                                </div>
                                 <button type="submit" class="btn btn-primary">Add List</button>
                             </form>
                         </div>
@@ -27,7 +23,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-3"  v-for="list in lists">
+                <div class="col-3" v-for="list in lists">
                     <lists :list='list'></lists>
                 </div>
             </div>
@@ -41,16 +37,16 @@
     export default {
         name: 'Boards',
         props: ['boardId'],
-        mounted(){
+        mounted() {
             this.$store.dispatch('getLists', this.$route.params.boardId)
         },
         data() {
             return {
-                list: {boardId: this.$route.params.boardId}
+                list: { boardId: this.$route.params.boardId }
             }
         },
         methods: {
-            createList(list){  
+            createList(list) {
                 this.$store.dispatch('createList', this.list)
             }
         },
@@ -61,12 +57,12 @@
             board() {
                 return this.$store.state.activeBoard
             },
-            lists(){
+            lists() {
                 return this.$store.state.boardLists
             }
         },
         watch: {
-            boardId: function(newId, oldId){
+            boardId: function (newId, oldId) {
                 this.$store.dispatch('getLists', newId)
             }
         },
@@ -77,5 +73,4 @@
     }
 </script>
 <style scoped>
-
 </style>
