@@ -34,36 +34,31 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="card-body">
+              <p>
+                <b>{{task.title}}</b>
+              </p>
               <p>{{task.description}}</p>
               <!-- <div v-for="comment in comments">
           <p>{{user.userName}}</p>
           <p>{{comment.comment}}</p>
         </div> -->
+              <div class="comments">
+                <form class="px-4 py-3" @submit.prevent="createComment">
+                  <div class="form-group">
+                    <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Comment</button>
+                </form>
+              </div>
               <div :key="comment._id" v-for="comment in comments">
                 <Comments :comment="comment"></Comments>
-              </div>
-              <div class="comments">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    Add A Comment
-                  </button>
-                  <div class="dropdown-menu">
-                    <form class="px-4 py-3" @submit.prevent="createComment">
-                      <div class="form-group">
-                        <label for="comment">Comment</label>
-                        <input v-model="comment.comment" type="text" class="form-control" id="comment" placeholder="Comment">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Add Comment</button>
-                    </form>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -87,6 +82,7 @@
     methods: {
       createComment(comment) {
         this.$store.dispatch('createComment', this.comment)
+        this.comment = {}
       },
       editTask(task) {
         this.$store.dispatch('editTask', task)
