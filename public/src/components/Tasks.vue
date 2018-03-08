@@ -1,7 +1,7 @@
 <template>
-  <div class="tasks" draggable="true" v-on:dragstart.capture="changeList" :task='task'>
+  <div class="tasks" >
     <div class="card">
-      <div class="card-header" data-toggle="modal" :data-target="'#'+task._id">
+      <div class="card-header" data-toggle="modal" :data-target="'#'+task._id" draggable="true" v-on:dragstart.capture="changeList" :task='task'>
         <h5>{{task.title}}</h5>
       </div>
       <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
@@ -104,4 +104,5 @@
 </script>
 
 <style scoped>
+ 
 </style>

@@ -22,9 +22,6 @@
         </div>
       </div>
     </div>
-    <p>
-      <strong>{{list.description}}</strong>
-    </p>
     <div :key="task._id" v-for="task in tasks" class="taskTitle">
       <Tasks :task="task"></Tasks>
     </div>
@@ -75,9 +72,9 @@
       editList(list) {
         this.$store.dispatch('editList', list)
       },
-      changeList(event){
+      changeList(event) {
         var movingTask = JSON.parse(event.dataTransfer.getData('text/javascript'))
-        this.$store.dispatch('changeList', {task: this.task, movingTask})
+        this.$store.dispatch('changeList', { task: this.task, movingTask })
       }
 
     },
@@ -99,9 +96,10 @@
 </script>
 
 <style scoped>
-  .lists{
+  .lists {
     margin-bottom: 2rem
   }
+
   .hideCreateTask {
     display: none;
   }
@@ -110,21 +108,24 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(180, 88, 87, .8)
+    background-color: rgba(211,126,102, .8);
   }
 
   .listIcons {
     display: block;
   }
-.taskTitle{
-  margin: .5rem;
-  margin-bottom: .2rem;
-}
+
+  .taskTitle {
+    margin: .5rem;
+    margin-bottom: .2rem;
+  }
+
   .addTaskForm {
     display: inline-flex;
     justify-content: space-between;
   }
-  .formBox{
+
+  .formBox {
     border: 0;
     box-shadow: none;
   }
