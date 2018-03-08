@@ -2,7 +2,7 @@
   <div class="tasks">
     <div class="card">
       <div class="card-header" data-toggle="modal" :data-target="'#'+task._id" draggable="true" v-on:dragstart.capture="changeList"
-        :task='task'>
+        :task='task' id="task-modal">
         <h5>{{task.title}}</h5>
       </div>
       <div class="modal" tabindex="-1" role="dialog" :id='task._id'>
@@ -85,6 +85,7 @@
       },
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
+        $('#task-modal').modal('hide')
       },
       changeList(event) {
         event.dataTransfer.setData('text/javascript', JSON.stringify(this.task))
@@ -118,5 +119,8 @@
 
   .modal-body {
     padding-top: 2rem;
+  }
+  .modal-footer{
+    display: block
   }
 </style>
