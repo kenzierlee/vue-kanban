@@ -100,7 +100,6 @@
   .lists {
     margin-bottom: 2rem;
     margin-top: 1rem;
-    width: 25rem;
     border-radius: 4px;
   }
 
