@@ -12,21 +12,23 @@
               <div class="dropdown">
                 <div class="modal-header">
                   <h5 class="task-title">{{task.title}}</h5>
-                  <i class="fas fa-edit dropdown-toggle m-1" :id="task._id" data-toggle="dropdown"></i>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <form class="px-4 py-3" @submit.prevent="editTask(task)">
-                      <div class="form-group">
-                        <label for="task-title">Title</label>
-                        <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
-                      </div>
-                      <div class="form-group">
-                        <label for="task-description">Description</label>
-                        <textarea v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description" rows="3"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Edit Task</button>
-                    </form>
-                  </div>
-                  <i class="fas fa-times-circle m-1" :id="task._id" @click="deleteTask(task)"></i>
+                  <span class="editTask">
+                    <i class="fas fa-edit dropdown-toggle m-1" :id="task._id" data-toggle="dropdown"></i>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <form class="px-4 py-3" @submit.prevent="editTask(task)">
+                        <div class="form-group">
+                          <label for="task-title">Title</label>
+                          <input v-model="task.title" type="text" class="form-control" id="task-title" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                          <label for="task-description">Description</label>
+                          <textarea v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Edit Task</button>
+                      </form>
+                    </div>
+                    <i class="fas fa-times-circle m-1" :id="task._id" @click="deleteTask(task)"></i>
+                  </span>
                 </div>
               </div>
               <div class="modal-body">
@@ -109,7 +111,12 @@
 </script>
 
 <style scoped>
-  .modal-header {
+  .model-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+  }
+  .editTask {
     display: flex;
     justify-content: flex-end;
     padding: 4px;
