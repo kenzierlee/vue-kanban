@@ -73,11 +73,12 @@
 
 <script>
   import Router from '../router'
-  import Boards from './Boards.vue'
+  import Boards from './Board.vue'
   import Navbar from './Navbar.vue'
   export default {
     name: 'Home',
     mounted() {
+      this.$store.dispatch('getBoards', this.user._id)
     },
     data() {
       return {

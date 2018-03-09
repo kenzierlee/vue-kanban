@@ -31,7 +31,7 @@
 </template>
 <script>
     import Router from '../router'
-    import Lists from './Lists.vue'
+    import Lists from './List.vue'
     import Navbar from './Navbar.vue'
     export default {
         name: 'Boards',

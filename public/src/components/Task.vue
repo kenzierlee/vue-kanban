@@ -11,8 +11,8 @@
             <div class="card-body">
               <div class="dropdown">
                 <div class="modal-header">
-                  <i class="fas fa-edit dropdown-toggle" id="edit-task" data-toggle="dropdown"></i>
-                  <div class="dropdown-menu">
+                  <i class="fas fa-edit dropdown-toggle m-1" id="edit-task" data-toggle="dropdown"></i>
+                  <div class="dropdown-menu dropdown-menu-right">
                     <form class="px-4 py-3" @submit.prevent="editTask(task)">
                       <div class="form-group">
                         <label for="task-title">Title</label>
@@ -20,24 +20,22 @@
                       </div>
                       <div class="form-group">
                         <label for="task-description">Description</label>
-                        <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
+                        <textarea v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description" rows="3"></textarea>
                       </div>
                       <button type="submit" class="btn btn-primary">Edit Task</button>
                     </form>
                   </div>
-                  <i class="fas fa-times-circle" @click="deleteTask(task)"></i>
+                  <i class="fas fa-times-circle m-1" @click="deleteTask(task)"></i>
                 </div>
               </div>
               <div class="modal-body">
-                <p>
-                  <b>{{task.title}}</b>
-                </p>
+                <h5>{{task.title}}</h5>
                 <p>{{task.description}}</p>
               </div>
               <div class="comments">
                 <form class="px-4 py-3" @submit.prevent="createComment">
                   <div class="form-group">
-                    <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
+                    <textarea v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment" rows="3"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Add Comment</button>
                 </form>
@@ -57,7 +55,7 @@
 </template>
 
 <script>
-  import Comments from './Comments'
+  import Comments from './Comment'
   export default {
     name: 'Tasks',
     props: ['task'],
@@ -113,14 +111,12 @@
 
 <style scoped>
   .modal-header {
-    display: inline;
-    align-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
   }
 
-  .modal-body {
-    padding-top: 2rem;
-  }
-  .modal-footer{
+  .modal-footer {
     display: block
   }
 </style>
