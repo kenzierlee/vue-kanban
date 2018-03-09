@@ -31,19 +31,21 @@
                   <router-link :to="{name: 'Board', params: {boardId: board._id}}" class="link">
                     <strong>{{board.title}}</strong>
                   </router-link>
-                  <i class="fas fa-times-circle" @click="deleteBoard(board)"></i>
-                  <div class="dropdown">
-                    <i class="fas fa-edit dropdown-toggle" :id="board._id" data-toggle="dropdown"></i>
-                    <div class="dropdown-menu" id="board._id">
-                      <form class="px-4 py-3" @submit.prevent="editBoard(board)">
-                        <div class="form-group">
-                          <label for="board-title">Title</label>
-                          <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Edit Board</button>
-                      </form>
+                  <span class="editBoard">
+                    <div class="dropdown">
+                      <i class="fas fa-edit dropdown-toggle m-1" :id="board._id" data-toggle="dropdown"></i>
+                      <div class="dropdown-menu" id="board._id">
+                        <form class="px-4 py-3" @submit.prevent="editBoard(board)">
+                          <div class="form-group">
+                            <label for="board-title">Title</label>
+                            <input v-model="board.title" type="text" class="form-control" id="board-title" placeholder="Title">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Edit Board</button>
+                        </form>
+                      </div>
                     </div>
-                  </div>
+                    <i class="fas fa-times-circle m-1" @click="deleteBoard(board)"></i>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -118,6 +120,12 @@
 </script>
 
 <style scoped>
+  .editBoard {
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+  }
+
   .boardsSection {
     justify-content: center
   }

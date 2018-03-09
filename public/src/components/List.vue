@@ -55,16 +55,6 @@
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
       },
-      showDropdown() {
-        var element = document.getElementById("createListDropdown")
-        element.classList.remove("hideCreateTask")
-        document.getElementById("addTaskForm").reset()
-      },
-      hideDropdown(id) {
-        console.log(id)
-        var element = document.getElementById("createListDropdown")
-        element.classList.add("hideCreateTask")
-      },
       editList(list) {
         this.$store.dispatch('editList', list)
         $('#' + list._id).dropdown('toggle')

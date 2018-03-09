@@ -80,6 +80,7 @@ export default new vuex.Store({
                 })
         },
         deleteComment({ commit, dispatch }, payload) {
+            console.log(payload)
             api.delete('comments/' + payload._id).then(res => {
                 dispatch('getComments', payload.taskId)
             })

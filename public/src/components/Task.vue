@@ -11,7 +11,7 @@
             <div class="card-body">
               <div class="dropdown">
                 <div class="modal-header">
-                  <i class="fas fa-edit dropdown-toggle m-1" id="edit-task" data-toggle="dropdown"></i>
+                  <i class="fas fa-edit dropdown-toggle m-1" :id="task._id" data-toggle="dropdown"></i>
                   <div class="dropdown-menu dropdown-menu-right">
                     <form class="px-4 py-3" @submit.prevent="editTask(task)">
                       <div class="form-group">
@@ -25,7 +25,7 @@
                       <button type="submit" class="btn btn-primary">Edit Task</button>
                     </form>
                   </div>
-                  <i class="fas fa-times-circle m-1" @click="deleteTask(task)"></i>
+                  <i class="fas fa-times-circle m-1" :id="task._id" @click="deleteTask(task)"></i>
                 </div>
               </div>
               <div class="modal-body">
@@ -75,15 +75,15 @@
     methods: {
       createComment(comment) {
         this.$store.dispatch('createComment', this.comment)
-        this.comment = {}
+        comment = {}
       },
       editTask(task) {
         this.$store.dispatch('editTask', task)
-        $('#edit-task').dropdown('toggle')
+        $('#'+task._id).dropdown('toggle')
       },
       deleteTask(task) {
         this.$store.dispatch('deleteTask', task)
-        $('#task-modal').modal('hide')
+        $('#'+task._id).modal('hide')
       },
       changeList(event) {
         event.dataTransfer.setData('text/javascript', JSON.stringify(this.task))

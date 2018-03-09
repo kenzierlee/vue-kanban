@@ -11,7 +11,7 @@
                             Add A List
                         </button>
                         <div class="dropdown-menu">
-                            <form class="px-4 py-3" @submit.prevent="createList">
+                            <form class="px-4 py-3"  @submit.prevent="createList">
                                 <div class="form-group">
                                     <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
                                 </div>
@@ -48,7 +48,7 @@
         methods: {
             createList(list) {
                 this.$store.dispatch('createList', this.list)
-                $('#add-list').dropdown('toggle')
+                $('#dropdownMenuButton').dropdown('toggle')
             }
         },
         computed: {
