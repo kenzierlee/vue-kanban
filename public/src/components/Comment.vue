@@ -31,6 +31,7 @@
                 $('#'+comment._id).dropdown('toggle')
             },
             deleteComment(comment) {
+                console.log(comment)
                 this.$store.dispatch('deleteComment', comment)
             }
         },

@@ -35,8 +35,8 @@ router.put('/comments/:commentId', (req, res, next) => {
 router.delete('/comments/:commentId', (req, res, next) => {
   Comments.findById(req.params.commentId)
     .then(comment => {
-      if(comment.userId != req.session.uid){
-        return
+      if(comment.userId.toString() !== req.session.uid.toString()){
+        return res.send('invalid user')
       }
       comment.remove()
       return res.send({

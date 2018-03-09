@@ -33,7 +33,7 @@ router.put('/lists/:listId', (req, res, next) => {
 router.delete('/lists/:listId', (req, res, next) => {
   Lists.findById(req.params.listId)
     .then(list => {
-      if(req.session.uid != list.userId){
+      if(req.session.uid.toString() !== list.userId.toString()){
         return
       }
       list.remove()

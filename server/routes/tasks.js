@@ -34,7 +34,7 @@ router.put('/tasks/:taskId', (req, res, next) => {
 router.delete('/tasks/:taskId', (req, res, next) => {
   Tasks.findById(req.params.taskId)
     .then(task => {
-      if(task.userId != req.session.uid){
+      if(task.userId.toString() !== req.session.uid.toString()){
         return
       }
       task.remove()
