@@ -50,7 +50,7 @@
     methods: {
       createTask(task) {
         this.$store.dispatch('createTask', this.task)
-        this.task = {}
+        task = {}
       },
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
