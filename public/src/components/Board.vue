@@ -37,6 +37,7 @@
         name: 'Boards',
         props: ['boardId'],
         mounted() {
+            this.$store.dispatch('authenticate')
             this.$store.dispatch('getLists', this.$route.params.boardId)
         },
         data() {
