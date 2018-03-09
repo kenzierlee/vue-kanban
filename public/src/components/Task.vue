@@ -11,6 +11,7 @@
             <div class="card-body">
               <div class="dropdown">
                 <div class="modal-header">
+                  <h5 class="task-title">{{task.title}}</h5>
                   <i class="fas fa-edit dropdown-toggle m-1" :id="task._id" data-toggle="dropdown"></i>
                   <div class="dropdown-menu dropdown-menu-right">
                     <form class="px-4 py-3" @submit.prevent="editTask(task)">
@@ -29,7 +30,6 @@
                 </div>
               </div>
               <div class="modal-body">
-                <h5>{{task.title}}</h5>
                 <p>{{task.description}}</p>
               </div>
               <div class="comments">
