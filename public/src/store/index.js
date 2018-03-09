@@ -198,6 +198,16 @@ export default new vuex.Store({
                     console.log(err)
                 })
         },
+        //Collaborators
+        // addCollaborator({commit, dispatch}, payload){
+        //     console.log("This is my Payload:", payload)
+        //     api.get('users', payload)
+        //     .then(res =>{
+        //         console.log(res)
+        //     })
+        // },
+
+
         //user/login actions
         createUser({ commit, dispatch }, payload) {
             auth.post("register", payload).then(res => {
