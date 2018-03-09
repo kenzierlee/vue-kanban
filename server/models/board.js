@@ -6,6 +6,7 @@ var schemaName = 'Board';
 var schema = new Schema({
     title: {type: String, require: true},
     userId: {type: ObjectId, ref: 'User'},
+    membersId: [{type: ObjectId, ref: 'User'}],
     created: {type: Date, default: Date.now()}
 });
 

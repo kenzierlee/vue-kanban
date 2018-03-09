@@ -8,7 +8,6 @@ var schema = new Schema({
     description: {type: String},
     userId: {type: ObjectId, ref: 'User'},
     boardId: {type: ObjectId, ref: 'Board'},
-    membersId: [{type: ObjectId, ref: 'User'}],
     listId: {type: ObjectId, ref: 'List'}
 });
 
