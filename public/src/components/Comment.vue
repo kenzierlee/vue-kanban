@@ -27,11 +27,9 @@
             editComment(comment) {
                 var idComment = '#'+comment._id
                 this.$store.dispatch('editComment', comment)
-                console.log(comment)
                 $('#'+comment._id).dropdown('toggle')
             },
             deleteComment(comment) {
-                console.log(comment)
                 this.$store.dispatch('deleteComment', comment)
             }
         },

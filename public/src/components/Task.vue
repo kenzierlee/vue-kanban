@@ -65,7 +65,6 @@
     data() {
       return {
         comment: {
-          comment: '',
           boardId: this.task.boardId,
           listId: this.task.listId,
           taskId: this.task._id
@@ -75,7 +74,7 @@
     methods: {
       createComment(comment) {
         this.$store.dispatch('createComment', this.comment)
-        comment = {}
+        
       },
       editTask(task) {
         this.$store.dispatch('editTask', task)

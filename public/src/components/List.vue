@@ -43,14 +43,16 @@
       return {
         task: {
           boardId: this.list.boardId,
-          listId: this.list._id,
+          listId: this.list._id
         }
       }
     },
     methods: {
       createTask(task) {
-        this.$store.dispatch('createTask', this.task)
-        task = {}
+        this.$store.dispatch('createTask', this.task).then(
+          task.target.reset(task-title)
+        )
+        
       },
       deleteList(list) {
         this.$store.dispatch('deleteList', list)
