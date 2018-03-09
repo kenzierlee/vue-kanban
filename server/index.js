@@ -14,7 +14,7 @@ var listRoutes = require('./routes/lists');
 var taskRoutes = require('./routes/tasks');
 var commentRoutes = require('./routes/comments');
 
-var whitelist = ['http://localhost:8080', 'https://kanban-trevor.herokuapp.com/']
+var whitelist = ['http://localhost:8080', 'https://vue-kanban-partner-project.herokuapp.com/']
 var corsOptions = {
     origin: function (origin, callback) {
         var originIsWhitelisted = whitelist.indexOf(origin) !== -1
