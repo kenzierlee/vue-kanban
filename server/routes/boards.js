@@ -41,7 +41,7 @@ router.delete('/:userId/boards/:boardId', (req, res, next) => {
 
 //Get Users Boards
 router.get('/:id/boards', (req, res, next) => {
-  Board.find(req.session.uid)
+  Board.find({userId: req.session.uid})
     .then(board => {
       return res.send(board)
     })
