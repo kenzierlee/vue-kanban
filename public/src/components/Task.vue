@@ -20,7 +20,7 @@
                       </div>
                       <div class="form-group">
                         <label for="task-description">Description</label>
-                        <input v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description">
+                        <textarea v-model="task.description" type="text" class="form-control" id="task-description" placeholder="Description" rows="3"></textarea>
                       </div>
                       <button type="submit" class="btn btn-primary">Edit Task</button>
                     </form>
@@ -37,7 +37,7 @@
               <div class="comments">
                 <form class="px-4 py-3" @submit.prevent="createComment">
                   <div class="form-group">
-                    <input v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment">
+                    <textarea v-model="comment.comment" type="text" class="form-control" id="comment-comment" placeholder="New Comment" rows="3"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Add Comment</button>
                 </form>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import Comments from './Comments'
+  import Comments from './Comment'
   export default {
     name: 'Tasks',
     props: ['task'],

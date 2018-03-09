@@ -28,7 +28,7 @@
     </div>
 </template>
 <script>
-    import Boards from './Boards.vue'
+    import Boards from './Board.vue'
     export default {
         name: 'Navbar',
         methods: {

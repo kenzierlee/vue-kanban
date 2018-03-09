@@ -8,7 +8,7 @@
                     <form class="px-4 py-3" @submit.prevent="editComment(comment)">
                         <div class="form-group">
                             <label for="comment">Comment</label>
-                            <input v-model="comment.comment" type="text" class="form-control" id="comment" placeholder="Comment">
+                            <textarea v-model="comment.comment" type="text" class="form-control" id="comment" placeholder="Comment" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Edit Comment</button>
                     </form>

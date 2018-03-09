@@ -12,10 +12,6 @@
                 <label for="list-title">Title</label>
                 <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
               </div>
-              <div class="form-group">
-                <label for="list-description">Description</label>
-                <input v-model="list.description" type="text" class="form-control" id="list-description" placeholder="Description">
-              </div>
               <button type="submit" class="btn btn-primary">Edit List</button>
             </form>
           </div>
@@ -36,7 +32,7 @@
 </template>
 
 <script>
-  import Tasks from './Tasks'
+  import Tasks from './Task'
   export default {
     name: 'Lists',
     props: ['list'],
@@ -71,7 +67,7 @@
       },
       editList(list) {
         this.$store.dispatch('editList', list)
-        $('#'+list._id).dropdown('toggle')
+        $('#' + list._id).dropdown('toggle')
       },
       changeList(event) {
         var movingTask = JSON.parse(event.dataTransfer.getData('text/javascript'))
@@ -111,7 +107,7 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(211,126,102, .8);
+    background-color: rgba(211, 126, 102, .8);
   }
 
   .listIcons {
@@ -132,6 +128,4 @@
     border: 0;
     box-shadow: none;
   }
-
-
 </style>
