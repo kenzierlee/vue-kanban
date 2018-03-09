@@ -33,11 +33,14 @@ router.put('/comments/:commentId', (req, res, next) => {
 
 //Delete a Comment
 router.delete('/comments/:commentId', (req, res, next) => {
-  req.body.userId = req.session.uid
-  Comments.findByIdAndRemove(req.params.commentId)
-    .then(comments => {
+  Comments.findById(req.params.commentId)
+    .then(comment => {
+      if(comment.userId != req.session.uid){
+        return
+      }
+      comment.remove()
       return res.send({
-        message: 'Sucessfully deleted a Comments'
+        message: 'Sucessfully deleted a Comment'
       })
     })
     .catch(next)

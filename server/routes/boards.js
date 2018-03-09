@@ -4,7 +4,7 @@ var Users = require('../models/user');
 
 
 //Create a Board
-router.post('/boards/', (req, res, next) => {
+router.post('/boards', (req, res, next) => {
   req.body.userId = req.session.uid
   Board.create(req.body)
     .then(board => {
@@ -27,8 +27,9 @@ router.put('/:userId/boards/:boardId', (req, res, next) => {
 
 //Delete a board
 router.delete('/:userId/boards/:boardId', (req, res, next) => {
-  Board.findByIdAndRemove({userId: req.params.userId, _id: req.params.boardId})
+  Board.find({_id: req.params.boardId, userId: req.session.uid})
     .then(board => {
+      board.remove()
       return res.send({
         message: 'Sucessfully deleted a Board'
       })
@@ -36,9 +37,11 @@ router.delete('/:userId/boards/:boardId', (req, res, next) => {
     .catch(next)
 })
 
+
+
 //Get Users Boards
 router.get('/:id/boards', (req, res, next) => {
-  Board.find({ userId: req.params.id })
+  Board.find(req.session.uid)
     .then(board => {
       return res.send(board)
     })

@@ -31,10 +31,14 @@ router.put('/lists/:listId', (req, res, next) => {
 
 //Delete a List
 router.delete('/lists/:listId', (req, res, next) => {
-  Lists.findByIdAndRemove(req.params.listId)
-    .then(lists => {
+  Lists.findById(req.params.listId)
+    .then(list => {
+      if(req.session.uid != list.userId){
+        return
+      }
+      list.remove()
       return res.send({
-        message: 'Sucessfully deleted a Lists'
+        message: 'Successfully deleted a List'
       })
     })
     .catch(next)
