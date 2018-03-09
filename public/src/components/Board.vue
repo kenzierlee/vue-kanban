@@ -2,16 +2,19 @@
     <div class="boards">
         <navbar></navbar>
         <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12 d-flex justify-content-end">
-                    <h3>{{board.title}}</h3>
+            <div class="row">
+                <div class="col-sm-12 d-flex justify-content-end">
+                    <!-- <form @submit.prevent="addCollaborator">
+                            <input v-model="addUser.email" type="text" placeholder="Collaborators Email">
+                            <button type="submit" class="btn btn-primary">Add Collaborator</button>
+                        </form> -->
                     <div class="dropdown dropleft">
                         <button class="btn addListBtn dropdown-toggle m-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Add A List
                         </button>
                         <div class="dropdown-menu">
-                            <form class="px-4 py-3"  @submit.prevent="createList">
+                            <form class="px-4 py-3" @submit.prevent="createList">
                                 <div class="form-group">
                                     <input v-model="list.title" type="text" class="form-control" id="list-title" placeholder="Title">
                                 </div>
@@ -35,21 +38,25 @@
     import Navbar from './Navbar.vue'
     export default {
         name: 'Boards',
-        props: ['boardId'],
+        props: ['boardId',],
         mounted() {
             this.$store.dispatch('authenticate')
             this.$store.dispatch('getLists', this.$route.params.boardId)
         },
         data() {
             return {
-                list: { boardId: this.$route.params.boardId }
+                list: { boardId: this.$route.params.boardId },
+                addUser: { }
             }
         },
         methods: {
             createList(list) {
                 this.$store.dispatch('createList', this.list)
                 $('#dropdownMenuButton').dropdown('toggle')
-            }
+            },
+            // addCollaborator(addUser){
+            //     this.$store.dispatch('addCollaborator', this.addUser)
+            // }
         },
         computed: {
             user() {
@@ -69,7 +76,7 @@
         },
         components: {
             Lists,
-            Navbar
+            Navbar,
         }
     }
 </script>
@@ -77,17 +84,19 @@
     .addListBtn {
         background-color: rgb(240, 198, 148);
     }
+
     .addListBtn:hover {
         background-color: rgba(240, 198, 148, .75);
     }
-    .dropdown-menu {
-    width: 20rem;
-    margin-right: .5rem;
-  }
-  .boards{
-    background-color: whitesmoke;
-    height: 100%;
-    min-height: 100vh
-  }
 
+    .dropdown-menu {
+        width: 20rem;
+        margin-right: .5rem;
+    }
+
+    .boards {
+        background-color: whitesmoke;
+        height: 100%;
+        min-height: 100vh
+    }
 </style>

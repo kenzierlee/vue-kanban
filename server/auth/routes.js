@@ -21,6 +21,7 @@ router.post('/auth/register', (req, res) => { // never call 'next' inside an aut
 router.post('/auth/login', (req, res) => {
   Users.findOne({email: req.body.email})
     .then( user => {
+      console.log(user)
       if(!user) {
         return res.status(401).send({error: 'Invalid username and/or password'})
       }
