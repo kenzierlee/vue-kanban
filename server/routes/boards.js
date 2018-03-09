@@ -27,8 +27,11 @@ router.put('/:userId/boards/:boardId', (req, res, next) => {
 
 //Delete a board
 router.delete('/:userId/boards/:boardId', (req, res, next) => {
-  Board.find({_id: req.params.boardId, userId: req.session.uid})
+  Board.findById(req.params.boardId)
     .then(board => {
+      if(board.userId.toString() !== req.session.uid.toString()){
+        return
+      }
       board.remove()
       return res.send({
         message: 'Sucessfully deleted a Board'
