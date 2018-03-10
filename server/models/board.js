@@ -9,7 +9,7 @@ var Comments = require('./comment');
 var schema = new Schema({
     title: {type: String, require: true},
     userId: {type: ObjectId, ref: 'User'},
-    membersId: [{type: ObjectId, ref: 'User'}],
+    membersId: [], //this is where memberId or email is stored.
     created: {type: Date, default: Date.now()}
 });
 
