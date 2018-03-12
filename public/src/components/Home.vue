@@ -51,7 +51,8 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <!-- Collaboration not functional yet. -->
+        <!-- <div class="col-4">
           <div class="card boardCard">
             <div class="card-header">
               <h3>Collaboration Boards</h3>
@@ -66,7 +67,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
